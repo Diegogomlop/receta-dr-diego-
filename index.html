@@ -43,7 +43,7 @@ body {
    CONTROLES
 ══════════════════════════════════════════ */
 .controls {
-  width: 100%; max-width: 740px;
+  width: 100%; max-width: 816px;
   background: white; border-radius: 10px;
   padding: 13px 24px;
   display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
@@ -68,12 +68,18 @@ body {
 /* ══════════════════════════════════════════
    HOJA  (proporción carta 8.5 × 11 in)
 ══════════════════════════════════════════ */
+#documento {
+  width: 100%; max-width: 816px;
+  display: flex; flex-direction: column;
+  gap: 18px;
+}
 .sheet {
-  width: 100%; max-width: 740px;
-  min-height: 960px;
+  width: 100%; max-width: 816px;
+  height: 1056px;
   background: #fff;
   display: flex; flex-direction: column;
   position: relative; overflow: hidden;
+  flex-shrink: 0;
   box-shadow: 0 10px 50px rgba(11,28,69,.22), 0 2px 8px rgba(11,28,69,.1);
 }
 
@@ -106,7 +112,8 @@ body {
   grid-template-columns: 132px 1fr 175px;
   column-gap: 24px;
   align-items: center;
-  padding: 24px 36px 0;
+  padding: 12px 36px 0;
+  flex-shrink: 0;
 }
 
 /* Logo */
@@ -168,7 +175,8 @@ body {
 ══════════════════════════════════════════ */
 .hdr-divider {
   position: relative; z-index: 1;
-  margin: 12px 36px 0;
+  flex-shrink: 0;
+  margin: 8px 36px 0;
 }
 .hdr-divider-thick { border: none; border-top: 2.5px solid var(--navy); }
 .hdr-divider-thin  { border: none; border-top: 1px solid var(--sky2); margin-top: 3px; opacity: .6; }
@@ -178,7 +186,8 @@ body {
 ══════════════════════════════════════════ */
 .patient-section {
   position: relative; z-index: 1;
-  margin: 12px 36px 0;
+  flex-shrink: 0;
+  margin: 8px 36px 0;
   display: grid;
   grid-template-columns: 1fr 88px 84px;
   column-gap: 18px;
@@ -206,18 +215,25 @@ body {
 ══════════════════════════════════════════ */
 .rx-section {
   position: relative; z-index: 1;
-  flex: 1;
-  margin: 10px 36px 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 6px 36px 0;
   display: flex; flex-direction: column;
+  overflow: hidden;
 }
 
-.med-list { display: flex; flex-direction: column; }
+.med-list {
+  display: flex; flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
 
 .med-row {
   display: grid;
   grid-template-columns: 22px 1fr;
   column-gap: 12px;
-  padding: 7px 0;
+  padding: 3px 0;
   border-bottom: 1px solid var(--line);
   align-items: start;
 }
@@ -242,15 +258,38 @@ body {
 .med-name:focus { border-bottom-color: var(--sky2); }
 
 .med-presc {
-  border: none; padding: 1px 3px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  margin: 0;
+  padding: 1px 3px 2px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 11px; font-weight: 400; color: var(--gray);
-  background: transparent; outline: none; width: 100%;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: #243044;
+  background: transparent;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
   border-bottom: 1px solid transparent;
-  transition: border-color .15s;
+  min-height: 1.45em;
 }
-.med-presc::placeholder { color: #c8d4e4; font-style: italic; font-size: 10.5px; }
+.med-presc::placeholder { color: #b0c0d4; font-style: italic; font-weight: 400; font-size: 12.5px; }
 .med-presc:focus { border-bottom-color: var(--line); }
+.med-cont-note {
+  font-size: 13px; font-weight: 700; color: var(--navy);
+  line-height: 1.35; overflow-wrap: anywhere;
+}
+.continua-banner {
+  flex-shrink: 0;
+  font-size: 8px; font-weight: 800; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--navy);
+  margin: 0 0 4px;
+}
 
 /* Botón agregar */
 .add-med-btn {
@@ -269,7 +308,8 @@ body {
 ══════════════════════════════════════════ */
 .ind-section {
   position: relative; z-index: 1;
-  margin: 10px 36px 0;
+  flex-shrink: 0;
+  margin: 6px 36px 0;
 }
 .section-label {
   font-size: 8px; font-weight: 800; color: var(--navy);
@@ -282,7 +322,7 @@ body {
   background: linear-gradient(90deg, transparent, var(--line), transparent);
 }
 .ind-box {
-  width: 100%; min-height: 48px;
+  width: 100%; min-height: 36px;
   border: 1px solid var(--line); border-radius: 7px;
   padding: 9px 13px;
   font-family: 'Montserrat', sans-serif;
@@ -298,12 +338,13 @@ body {
 ══════════════════════════════════════════ */
 .bottom-section {
   position: relative; z-index: 1;
-  margin: 10px 36px 0;
+  flex-shrink: 0;
+  margin: 6px 36px 0;
   display: grid;
   grid-template-columns: 1fr auto;
   column-gap: 24px;
   align-items: end;
-  padding-bottom: 4px;
+  padding-bottom: 16px;
 }
 
 .consultorio-block { display: flex; flex-direction: column; gap: 4px; }
@@ -344,40 +385,189 @@ body {
 /* ══════════════════════════════════════════
    PIE
 ══════════════════════════════════════════ */
+/* Pie compartido. La opción activa es la clase del HTML:
+   footer--a  iconos en una fila
+   footer--b  franja azul, misma retícula del encabezado
+   Para volver a A, cambie footer--b por footer--a. */
 .footer {
-  position: sticky;
-  bottom: 0;
-  z-index: 100;
-  margin-top: 10px;
-  background: var(--navy);
-  padding: 13px 28px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0 8px;
-  align-items: center;
+  position: relative;
   flex-shrink: 0;
+  margin-top: 0;
+  background: #fff;
+  color: var(--navy);
 }
-.fi {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 10.5px; font-weight: 600;
-  color: rgba(255,255,255,.9);
-  justify-content: center;
-  padding: 0 6px;
-}
-.fi:first-child { justify-content: flex-start; }
-.fi:last-child  { justify-content: flex-end; }
-.fi + .fi { border-left: 1px solid rgba(255,255,255,.15); }
-.fi svg { width: 32px; height: 32px; flex-shrink: 0; }
 
-/* Franja inferior dorada */
-.footer::after {
-  content: "";
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--gold) 0%, var(--gold2) 100%);
+.footer--a .footer-rule {
+  border-top: 2.5px solid var(--navy);
+  border-bottom: 2px solid var(--gold);
+  height: 0;
 }
-.footer { padding-bottom: 15px; }
+.footer--a .footer-main {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 7px 20px 8px;
+}
+.footer--a .footer-contacts {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.15fr) minmax(0, 1.4fr);
+  gap: 6px 12px;
+  align-items: center;
+}
+.footer--a .fi {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.footer--a .fi-icon {
+  width: 26px; height: 26px;
+  flex-shrink: 0;
+  border: 1.5px solid var(--navy);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--navy);
+  background: #fff;
+}
+.footer--a .fi-icon svg { width: 14px; height: 14px; display: block; }
+.footer--a .fi-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.footer--a .fi-label {
+  font-size: 7.5px; font-weight: 800; letter-spacing: .8px;
+  text-transform: uppercase; color: #3e5170; line-height: 1.15;
+}
+.footer--a .fi-value {
+  font-size: 11.5px; font-weight: 700; color: var(--navy);
+  line-height: 1.25; overflow-wrap: anywhere;
+}
+.footer--a .qr-frame { display: contents; }
+.footer--a .footer-qr {
+  flex-shrink: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.footer--a .footer-qr .qr {
+  width: 50px; height: 50px; display: block;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 2px;
+  box-sizing: border-box;
+}
+.footer--a .footer-qr .fi-label { text-align: center; line-height: 1.15; }
+@media (max-width: 680px) {
+  .footer--a .footer-main { align-items: flex-start; padding: 8px 14px 10px; }
+  .footer--a .footer-contacts { grid-template-columns: 1fr; gap: 7px; }
+  .footer--a .footer-qr { flex-direction: row; gap: 8px; }
+}
+
+.footer--b {
+  background: var(--navy);
+  color: #fff;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.footer--b .footer-rule {
+  height: 0;
+  border: none;
+  border-top: 2.5px solid var(--gold2);
+}
+.footer--b .footer-main {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  column-gap: 24px;
+  align-items: center;
+  padding: 8px 36px 28px;
+}
+.footer--b .footer-qr { grid-column: 1; grid-row: 1; }
+.footer--b .footer-contacts { grid-column: 2; grid-row: 1; }
+.footer--b .footer-qr {
+  position: relative;
+  width: 132px;
+  height: 54px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer--b .qr-frame {
+  width: 54px; height: 54px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1.5px solid var(--gold2);
+  padding: 4px;
+  flex: 0 0 auto;
+}
+.footer--b .qr-frame .qr {
+  width: 100%; height: 100%;
+  display: block;
+  margin: 0; padding: 0; border: 0;
+  background: transparent;
+}
+.footer--b .footer-qr .fi-label {
+  position: absolute;
+  left: 0; right: 0;
+  top: 58px;
+  margin: 0;
+  font-size: 7px; font-weight: 500; font-style: italic;
+  letter-spacing: .3px; text-transform: none;
+  color: rgba(255,255,255,.88); text-align: center; line-height: 1.35;
+}
+.footer--b .footer-contacts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  min-width: 0;
+  margin: 1px 0;
+  padding: 2px 0 2px 12px;
+  border-left: 2.5px solid var(--gold2);
+}
+.footer--b .fi {
+  display: grid;
+  grid-template-columns: 16px 7.2em minmax(0, 1fr);
+  column-gap: 8px;
+  align-items: center;
+  min-width: 0;
+}
+.footer--b .fi-icon {
+  width: 16px; height: 16px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  background: transparent;
+  border: none;
+}
+.footer--b .fi-icon svg { width: 15px; height: 15px; display: block; }
+.footer--b .fi-text { display: contents; }
+.footer--b .fi-label {
+  font-size: 9px; font-weight: 600; letter-spacing: .7px;
+  text-transform: uppercase; color: rgba(255,255,255,.82); line-height: 1.2;
+}
+.footer--b .fi-value {
+  font-size: 12.5px; font-weight: 700; color: #fff;
+  line-height: 1.3; overflow-wrap: break-word;
+}
+@media (max-width: 680px) {
+  .footer--b .footer-main {
+    grid-template-columns: 1fr;
+    row-gap: 6px;
+    justify-items: start;
+    padding: 12px 36px 14px;
+  }
+  .footer--b .footer-qr,
+  .footer--b .footer-contacts { grid-column: 1; width: 100%; }
+  .footer--b .footer-qr {
+    grid-row: 1;
+    width: 132px;
+    height: 54px;
+    padding-bottom: 24px;
+    box-sizing: content-box;
+  }
+  .footer--b .footer-contacts { grid-row: 2; }
+}
 
 
 /* ─── QR CODE ─────────────────────────────── */
@@ -411,31 +601,32 @@ body {
 }
 
 
-/* ══════════════════════════════════════════
-   PRINT
-══════════════════════════════════════════ */
+@page { size: letter; margin: 0; }
 @media print {
-  body { background: #fff; padding: 0; margin: 0; }
+  html, body { height: auto !important; overflow: visible !important; background: #fff; padding: 0; margin: 0; gap: 0; }
   .controls { display: none !important; }
   .add-med-btn { display: none !important; }
+  #documento {
+    display: block !important;
+    max-width: none; width: auto; height: auto;
+    overflow: visible !important; gap: 0;
+  }
   .sheet {
-    box-shadow: none; max-width: 100%;
-    width: 100%; height: 100vh;
-    min-height: unset;
-    page-break-inside: avoid;
+    display: flex; flex-direction: column;
+    box-shadow: none; max-width: none;
+    width: 8.5in;
+    height: 11in; min-height: 11in; max-height: 11in;
+    break-after: page; page-break-after: always;
+    break-inside: avoid; page-break-inside: avoid;
+    overflow: hidden;
   }
-  .footer {
-    position: relative !important;
-    bottom: auto !important;
+  .sheet:last-child { break-after: auto; page-break-after: auto; }
+  .footer, .footer--b, .footer--b .footer-rule, .footer-rule, .sheet-top-bar, .fi-icon {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-  .sheet-top-bar {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-  * { page-break-inside: avoid; }
 }
+
 </style>
 </head>
 <body>
@@ -452,6 +643,7 @@ body {
 </div>
 
 <!-- ── HOJA ── -->
+<div id="documento">
 <div class="sheet" id="receta">
 
 
@@ -570,62 +762,374 @@ body {
   </div>
 
   <!-- PIE -->
-  <div class="footer">
-    <div class="fi">
-      <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="24" cy="24" r="24" fill="#25D366"/>
-        <path fill="white" d="M24 8.4C15.4 8.4 8.4 15.4 8.4 24c0 2.7.7 5.3 2 7.5L8 40l8.8-2.3c2.1 1.2 4.5 1.9 7.2 1.9 8.6 0 15.6-7 15.6-15.6S32.6 8.4 24 8.4zm7.8 21.4c-.3.9-1.9 1.7-2.6 1.8-.7.1-1.4.3-4.7-1-4-1.6-6.6-5.7-6.8-6-.2-.3-1.6-2.2-1.6-4.2s1-3 1.4-3.4c.4-.4.8-.5 1.1-.5h.8c.2 0 .6-.1.9.7.3.8 1.1 2.7 1.2 2.9.1.2.2.4 0 .7-.1.3-.2.4-.4.7-.2.2-.4.5-.6.7-.2.2-.4.4-.2.8.2.4 1 1.6 2.1 2.7 1.5 1.3 2.7 1.7 3.1 1.9.4.2.6.2.8-.1.2-.3 1-1.1 1.2-1.5.2-.4.5-.3.9-.2.4.1 2.2 1 2.6 1.2.4.2.6.3.7.4.1.2.1.9-.2 1.8z"/>
-      </svg>
-      <span>348-130-9765</span>
-    </div>
-    <!-- QR en el pie -->
-    <div class="fi" style="justify-content:center; border-left:1px solid rgba(255,255,255,.15);">
-      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https://wa.me/523481309765?text=Hola,%20me%20gustar%C3%ADa%20agendar%20una%20cita&color=0b1c45&bgcolor=ffffff" alt="QR"
-             style="width:52px;height:52px;border-radius:5px;background:white;padding:3px;">
-        <span style="font-size:7px;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.6px;text-align:center;">Agendar<br>cita</span>
+  <!-- Pie activo: opción B. Para restaurar la opción A, use footer--a. -->
+  <div class="footer footer--b">
+    <div class="footer-rule" aria-hidden="true"></div>
+    <div class="footer-main">
+      <div class="footer-contacts">
+        <div class="fi">
+          <span class="fi-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7.2 17.6 5 19.4l.8-2.7A7.2 7.2 0 1 1 7.2 17.6z"/>
+            </svg>
+          </span>
+          <span class="fi-text">
+            <span class="fi-label">WhatsApp</span>
+            <span class="fi-value">348-130-9765</span>
+          </span>
+        </div>
+        <div class="fi">
+          <span class="fi-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s6.2-5.2 6.2-9.6a6.2 6.2 0 1 0-12.4 0C5.8 15.8 12 21 12 21z"/>
+              <circle cx="12" cy="11.3" r="2"/>
+            </svg>
+          </span>
+          <span class="fi-text">
+            <span class="fi-label">Consultorio</span>
+            <span class="fi-value">Carr. Arandas–Tepa Km 2</span>
+          </span>
+        </div>
+        <div class="fi">
+          <span class="fi-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3.5" y="5.5" width="17" height="13" rx="2"/>
+              <path d="m4.5 7.5 7.5 5.5L19.5 7.5"/>
+            </svg>
+          </span>
+          <span class="fi-text">
+            <span class="fi-label">Correo</span>
+            <span class="fi-value">dr.diegogomezlop@gmail.com</span>
+          </span>
+        </div>
       </div>
-    </div>
-    <div class="fi">
-      <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="24" cy="24" r="24" fill="rgba(255,255,255,.15)"/>
-        <path fill="white" d="M24 9C17.9 9 13 13.9 13 20c0 8.6 11 19 11 19S35 28.6 35 20c0-6.1-4.9-11-11-11zm0 14.5a3.5 3.5 0 110-7 3.5 3.5 0 010 7z"/>
-      </svg>
-      <span>Carr. Arandas–Tepa Km 2</span>
-    </div>
-    <div class="fi">
-      <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="24" cy="24" r="24" fill="white"/>
-        <path fill="#EA4335" d="M13 16h22l-11 9z"/>
-        <path fill="#4285F4" d="M35 16v16h-5V21.5z"/>
-        <path fill="#34A853" d="M13 16v16h5V21.5z"/>
-        <path fill="#FBBC05" d="M18 21.5V32h12V21.5L24 25z"/>
-        <path fill="#EA4335" d="M13 16l11 9 11-9z"/>
-      </svg>
-      <span>dr.diegogomezlop@gmail.com</span>
+      <div class="footer-qr">
+        <span class="qr-frame"><svg class="qr" role="img" aria-label="QR" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 37" preserveAspectRatio="xMidYMid meet" shape-rendering="crispEdges"><path fill="#0b1c45" d="M0 0h1v1h-1z M1 0h1v1h-1z M2 0h1v1h-1z M3 0h1v1h-1z M4 0h1v1h-1z M5 0h1v1h-1z M6 0h1v1h-1z M8 0h1v1h-1z M9 0h1v1h-1z M11 0h1v1h-1z M12 0h1v1h-1z M15 0h1v1h-1z M17 0h1v1h-1z M18 0h1v1h-1z M19 0h1v1h-1z M24 0h1v1h-1z M25 0h1v1h-1z M27 0h1v1h-1z M28 0h1v1h-1z M30 0h1v1h-1z M31 0h1v1h-1z M32 0h1v1h-1z M33 0h1v1h-1z M34 0h1v1h-1z M35 0h1v1h-1z M36 0h1v1h-1z M0 1h1v1h-1z M6 1h1v1h-1z M9 1h1v1h-1z M11 1h1v1h-1z M12 1h1v1h-1z M17 1h1v1h-1z M20 1h1v1h-1z M21 1h1v1h-1z M22 1h1v1h-1z M24 1h1v1h-1z M26 1h1v1h-1z M30 1h1v1h-1z M36 1h1v1h-1z M0 2h1v1h-1z M2 2h1v1h-1z M3 2h1v1h-1z M4 2h1v1h-1z M6 2h1v1h-1z M9 2h1v1h-1z M12 2h1v1h-1z M13 2h1v1h-1z M15 2h1v1h-1z M17 2h1v1h-1z M18 2h1v1h-1z M19 2h1v1h-1z M20 2h1v1h-1z M21 2h1v1h-1z M22 2h1v1h-1z M23 2h1v1h-1z M27 2h1v1h-1z M28 2h1v1h-1z M30 2h1v1h-1z M32 2h1v1h-1z M33 2h1v1h-1z M34 2h1v1h-1z M36 2h1v1h-1z M0 3h1v1h-1z M2 3h1v1h-1z M3 3h1v1h-1z M4 3h1v1h-1z M6 3h1v1h-1z M8 3h1v1h-1z M11 3h1v1h-1z M14 3h1v1h-1z M15 3h1v1h-1z M16 3h1v1h-1z M18 3h1v1h-1z M19 3h1v1h-1z M22 3h1v1h-1z M23 3h1v1h-1z M24 3h1v1h-1z M25 3h1v1h-1z M27 3h1v1h-1z M30 3h1v1h-1z M32 3h1v1h-1z M33 3h1v1h-1z M34 3h1v1h-1z M36 3h1v1h-1z M0 4h1v1h-1z M2 4h1v1h-1z M3 4h1v1h-1z M4 4h1v1h-1z M6 4h1v1h-1z M8 4h1v1h-1z M9 4h1v1h-1z M11 4h1v1h-1z M13 4h1v1h-1z M14 4h1v1h-1z M15 4h1v1h-1z M18 4h1v1h-1z M21 4h1v1h-1z M22 4h1v1h-1z M23 4h1v1h-1z M24 4h1v1h-1z M25 4h1v1h-1z M27 4h1v1h-1z M30 4h1v1h-1z M32 4h1v1h-1z M33 4h1v1h-1z M34 4h1v1h-1z M36 4h1v1h-1z M0 5h1v1h-1z M6 5h1v1h-1z M8 5h1v1h-1z M9 5h1v1h-1z M13 5h1v1h-1z M14 5h1v1h-1z M16 5h1v1h-1z M18 5h1v1h-1z M19 5h1v1h-1z M20 5h1v1h-1z M21 5h1v1h-1z M22 5h1v1h-1z M25 5h1v1h-1z M28 5h1v1h-1z M30 5h1v1h-1z M36 5h1v1h-1z M0 6h1v1h-1z M1 6h1v1h-1z M2 6h1v1h-1z M3 6h1v1h-1z M4 6h1v1h-1z M5 6h1v1h-1z M6 6h1v1h-1z M8 6h1v1h-1z M10 6h1v1h-1z M12 6h1v1h-1z M14 6h1v1h-1z M16 6h1v1h-1z M18 6h1v1h-1z M20 6h1v1h-1z M22 6h1v1h-1z M24 6h1v1h-1z M26 6h1v1h-1z M28 6h1v1h-1z M30 6h1v1h-1z M31 6h1v1h-1z M32 6h1v1h-1z M33 6h1v1h-1z M34 6h1v1h-1z M35 6h1v1h-1z M36 6h1v1h-1z M8 7h1v1h-1z M9 7h1v1h-1z M11 7h1v1h-1z M12 7h1v1h-1z M14 7h1v1h-1z M15 7h1v1h-1z M16 7h1v1h-1z M17 7h1v1h-1z M18 7h1v1h-1z M22 7h1v1h-1z M24 7h1v1h-1z M26 7h1v1h-1z M27 7h1v1h-1z M0 8h1v1h-1z M4 8h1v1h-1z M6 8h1v1h-1z M7 8h1v1h-1z M8 8h1v1h-1z M14 8h1v1h-1z M18 8h1v1h-1z M22 8h1v1h-1z M24 8h1v1h-1z M29 8h1v1h-1z M30 8h1v1h-1z M31 8h1v1h-1z M32 8h1v1h-1z M33 8h1v1h-1z M36 8h1v1h-1z M0 9h1v1h-1z M2 9h1v1h-1z M3 9h1v1h-1z M4 9h1v1h-1z M5 9h1v1h-1z M7 9h1v1h-1z M10 9h1v1h-1z M11 9h1v1h-1z M13 9h1v1h-1z M16 9h1v1h-1z M17 9h1v1h-1z M19 9h1v1h-1z M20 9h1v1h-1z M24 9h1v1h-1z M25 9h1v1h-1z M26 9h1v1h-1z M27 9h1v1h-1z M32 9h1v1h-1z M33 9h1v1h-1z M35 9h1v1h-1z M4 10h1v1h-1z M6 10h1v1h-1z M9 10h1v1h-1z M10 10h1v1h-1z M14 10h1v1h-1z M16 10h1v1h-1z M17 10h1v1h-1z M18 10h1v1h-1z M20 10h1v1h-1z M21 10h1v1h-1z M23 10h1v1h-1z M24 10h1v1h-1z M25 10h1v1h-1z M27 10h1v1h-1z M28 10h1v1h-1z M31 10h1v1h-1z M33 10h1v1h-1z M34 10h1v1h-1z M1 11h1v1h-1z M2 11h1v1h-1z M7 11h1v1h-1z M8 11h1v1h-1z M10 11h1v1h-1z M11 11h1v1h-1z M12 11h1v1h-1z M17 11h1v1h-1z M21 11h1v1h-1z M23 11h1v1h-1z M26 11h1v1h-1z M28 11h1v1h-1z M30 11h1v1h-1z M34 11h1v1h-1z M35 11h1v1h-1z M1 12h1v1h-1z M2 12h1v1h-1z M5 12h1v1h-1z M6 12h1v1h-1z M7 12h1v1h-1z M8 12h1v1h-1z M10 12h1v1h-1z M12 12h1v1h-1z M13 12h1v1h-1z M15 12h1v1h-1z M17 12h1v1h-1z M19 12h1v1h-1z M20 12h1v1h-1z M21 12h1v1h-1z M26 12h1v1h-1z M28 12h1v1h-1z M29 12h1v1h-1z M30 12h1v1h-1z M34 12h1v1h-1z M35 12h1v1h-1z M36 12h1v1h-1z M0 13h1v1h-1z M3 13h1v1h-1z M5 13h1v1h-1z M7 13h1v1h-1z M9 13h1v1h-1z M12 13h1v1h-1z M13 13h1v1h-1z M14 13h1v1h-1z M15 13h1v1h-1z M16 13h1v1h-1z M17 13h1v1h-1z M18 13h1v1h-1z M19 13h1v1h-1z M22 13h1v1h-1z M23 13h1v1h-1z M24 13h1v1h-1z M27 13h1v1h-1z M32 13h1v1h-1z M33 13h1v1h-1z M35 13h1v1h-1z M0 14h1v1h-1z M1 14h1v1h-1z M5 14h1v1h-1z M6 14h1v1h-1z M8 14h1v1h-1z M9 14h1v1h-1z M11 14h1v1h-1z M14 14h1v1h-1z M15 14h1v1h-1z M16 14h1v1h-1z M18 14h1v1h-1z M20 14h1v1h-1z M21 14h1v1h-1z M22 14h1v1h-1z M23 14h1v1h-1z M24 14h1v1h-1z M25 14h1v1h-1z M26 14h1v1h-1z M27 14h1v1h-1z M31 14h1v1h-1z M32 14h1v1h-1z M33 14h1v1h-1z M34 14h1v1h-1z M2 15h1v1h-1z M3 15h1v1h-1z M4 15h1v1h-1z M8 15h1v1h-1z M14 15h1v1h-1z M15 15h1v1h-1z M16 15h1v1h-1z M20 15h1v1h-1z M21 15h1v1h-1z M23 15h1v1h-1z M30 15h1v1h-1z M31 15h1v1h-1z M32 15h1v1h-1z M34 15h1v1h-1z M36 15h1v1h-1z M2 16h1v1h-1z M3 16h1v1h-1z M6 16h1v1h-1z M7 16h1v1h-1z M9 16h1v1h-1z M11 16h1v1h-1z M13 16h1v1h-1z M14 16h1v1h-1z M16 16h1v1h-1z M20 16h1v1h-1z M23 16h1v1h-1z M24 16h1v1h-1z M27 16h1v1h-1z M28 16h1v1h-1z M29 16h1v1h-1z M30 16h1v1h-1z M31 16h1v1h-1z M33 16h1v1h-1z M34 16h1v1h-1z M36 16h1v1h-1z M1 17h1v1h-1z M2 17h1v1h-1z M3 17h1v1h-1z M5 17h1v1h-1z M10 17h1v1h-1z M12 17h1v1h-1z M14 17h1v1h-1z M18 17h1v1h-1z M19 17h1v1h-1z M21 17h1v1h-1z M22 17h1v1h-1z M23 17h1v1h-1z M25 17h1v1h-1z M26 17h1v1h-1z M27 17h1v1h-1z M28 17h1v1h-1z M32 17h1v1h-1z M35 17h1v1h-1z M4 18h1v1h-1z M5 18h1v1h-1z M6 18h1v1h-1z M7 18h1v1h-1z M10 18h1v1h-1z M13 18h1v1h-1z M14 18h1v1h-1z M15 18h1v1h-1z M17 18h1v1h-1z M19 18h1v1h-1z M23 18h1v1h-1z M26 18h1v1h-1z M27 18h1v1h-1z M29 18h1v1h-1z M34 18h1v1h-1z M1 19h1v1h-1z M2 19h1v1h-1z M3 19h1v1h-1z M7 19h1v1h-1z M8 19h1v1h-1z M10 19h1v1h-1z M11 19h1v1h-1z M15 19h1v1h-1z M16 19h1v1h-1z M17 19h1v1h-1z M18 19h1v1h-1z M19 19h1v1h-1z M20 19h1v1h-1z M21 19h1v1h-1z M23 19h1v1h-1z M24 19h1v1h-1z M27 19h1v1h-1z M28 19h1v1h-1z M34 19h1v1h-1z M35 19h1v1h-1z M0 20h1v1h-1z M3 20h1v1h-1z M5 20h1v1h-1z M6 20h1v1h-1z M7 20h1v1h-1z M9 20h1v1h-1z M10 20h1v1h-1z M17 20h1v1h-1z M18 20h1v1h-1z M21 20h1v1h-1z M22 20h1v1h-1z M26 20h1v1h-1z M30 20h1v1h-1z M31 20h1v1h-1z M33 20h1v1h-1z M34 20h1v1h-1z M1 21h1v1h-1z M2 21h1v1h-1z M5 21h1v1h-1z M11 21h1v1h-1z M14 21h1v1h-1z M15 21h1v1h-1z M18 21h1v1h-1z M20 21h1v1h-1z M21 21h1v1h-1z M22 21h1v1h-1z M23 21h1v1h-1z M24 21h1v1h-1z M25 21h1v1h-1z M27 21h1v1h-1z M31 21h1v1h-1z M32 21h1v1h-1z M35 21h1v1h-1z M0 22h1v1h-1z M1 22h1v1h-1z M2 22h1v1h-1z M3 22h1v1h-1z M4 22h1v1h-1z M5 22h1v1h-1z M6 22h1v1h-1z M8 22h1v1h-1z M9 22h1v1h-1z M10 22h1v1h-1z M12 22h1v1h-1z M14 22h1v1h-1z M15 22h1v1h-1z M17 22h1v1h-1z M23 22h1v1h-1z M27 22h1v1h-1z M31 22h1v1h-1z M32 22h1v1h-1z M33 22h1v1h-1z M34 22h1v1h-1z M0 23h1v1h-1z M3 23h1v1h-1z M4 23h1v1h-1z M7 23h1v1h-1z M10 23h1v1h-1z M12 23h1v1h-1z M15 23h1v1h-1z M17 23h1v1h-1z M18 23h1v1h-1z M20 23h1v1h-1z M22 23h1v1h-1z M23 23h1v1h-1z M26 23h1v1h-1z M27 23h1v1h-1z M31 23h1v1h-1z M32 23h1v1h-1z M34 23h1v1h-1z M0 24h1v1h-1z M1 24h1v1h-1z M2 24h1v1h-1z M6 24h1v1h-1z M9 24h1v1h-1z M14 24h1v1h-1z M18 24h1v1h-1z M19 24h1v1h-1z M22 24h1v1h-1z M26 24h1v1h-1z M29 24h1v1h-1z M30 24h1v1h-1z M31 24h1v1h-1z M33 24h1v1h-1z M34 24h1v1h-1z M35 24h1v1h-1z M36 24h1v1h-1z M0 25h1v1h-1z M2 25h1v1h-1z M4 25h1v1h-1z M7 25h1v1h-1z M10 25h1v1h-1z M11 25h1v1h-1z M12 25h1v1h-1z M13 25h1v1h-1z M16 25h1v1h-1z M17 25h1v1h-1z M19 25h1v1h-1z M20 25h1v1h-1z M23 25h1v1h-1z M26 25h1v1h-1z M27 25h1v1h-1z M28 25h1v1h-1z M31 25h1v1h-1z M32 25h1v1h-1z M2 26h1v1h-1z M3 26h1v1h-1z M5 26h1v1h-1z M6 26h1v1h-1z M8 26h1v1h-1z M9 26h1v1h-1z M10 26h1v1h-1z M16 26h1v1h-1z M17 26h1v1h-1z M18 26h1v1h-1z M20 26h1v1h-1z M21 26h1v1h-1z M23 26h1v1h-1z M24 26h1v1h-1z M27 26h1v1h-1z M28 26h1v1h-1z M30 26h1v1h-1z M31 26h1v1h-1z M33 26h1v1h-1z M3 27h1v1h-1z M8 27h1v1h-1z M9 27h1v1h-1z M13 27h1v1h-1z M17 27h1v1h-1z M21 27h1v1h-1z M22 27h1v1h-1z M23 27h1v1h-1z M27 27h1v1h-1z M29 27h1v1h-1z M30 27h1v1h-1z M35 27h1v1h-1z M36 27h1v1h-1z M0 28h1v1h-1z M1 28h1v1h-1z M3 28h1v1h-1z M4 28h1v1h-1z M6 28h1v1h-1z M7 28h1v1h-1z M9 28h1v1h-1z M13 28h1v1h-1z M14 28h1v1h-1z M15 28h1v1h-1z M17 28h1v1h-1z M18 28h1v1h-1z M19 28h1v1h-1z M21 28h1v1h-1z M22 28h1v1h-1z M23 28h1v1h-1z M26 28h1v1h-1z M28 28h1v1h-1z M29 28h1v1h-1z M30 28h1v1h-1z M31 28h1v1h-1z M32 28h1v1h-1z M34 28h1v1h-1z M36 28h1v1h-1z M8 29h1v1h-1z M10 29h1v1h-1z M12 29h1v1h-1z M13 29h1v1h-1z M15 29h1v1h-1z M16 29h1v1h-1z M17 29h1v1h-1z M18 29h1v1h-1z M23 29h1v1h-1z M24 29h1v1h-1z M25 29h1v1h-1z M28 29h1v1h-1z M32 29h1v1h-1z M35 29h1v1h-1z M0 30h1v1h-1z M1 30h1v1h-1z M2 30h1v1h-1z M3 30h1v1h-1z M4 30h1v1h-1z M5 30h1v1h-1z M6 30h1v1h-1z M8 30h1v1h-1z M9 30h1v1h-1z M10 30h1v1h-1z M13 30h1v1h-1z M15 30h1v1h-1z M18 30h1v1h-1z M21 30h1v1h-1z M22 30h1v1h-1z M23 30h1v1h-1z M24 30h1v1h-1z M28 30h1v1h-1z M30 30h1v1h-1z M32 30h1v1h-1z M0 31h1v1h-1z M6 31h1v1h-1z M10 31h1v1h-1z M11 31h1v1h-1z M12 31h1v1h-1z M15 31h1v1h-1z M21 31h1v1h-1z M28 31h1v1h-1z M32 31h1v1h-1z M33 31h1v1h-1z M34 31h1v1h-1z M36 31h1v1h-1z M0 32h1v1h-1z M2 32h1v1h-1z M3 32h1v1h-1z M4 32h1v1h-1z M6 32h1v1h-1z M8 32h1v1h-1z M9 32h1v1h-1z M11 32h1v1h-1z M15 32h1v1h-1z M16 32h1v1h-1z M20 32h1v1h-1z M24 32h1v1h-1z M28 32h1v1h-1z M29 32h1v1h-1z M30 32h1v1h-1z M31 32h1v1h-1z M32 32h1v1h-1z M33 32h1v1h-1z M34 32h1v1h-1z M35 32h1v1h-1z M36 32h1v1h-1z M0 33h1v1h-1z M2 33h1v1h-1z M3 33h1v1h-1z M4 33h1v1h-1z M6 33h1v1h-1z M9 33h1v1h-1z M10 33h1v1h-1z M12 33h1v1h-1z M18 33h1v1h-1z M19 33h1v1h-1z M22 33h1v1h-1z M23 33h1v1h-1z M25 33h1v1h-1z M26 33h1v1h-1z M27 33h1v1h-1z M29 33h1v1h-1z M30 33h1v1h-1z M31 33h1v1h-1z M33 33h1v1h-1z M34 33h1v1h-1z M36 33h1v1h-1z M0 34h1v1h-1z M2 34h1v1h-1z M3 34h1v1h-1z M4 34h1v1h-1z M6 34h1v1h-1z M10 34h1v1h-1z M11 34h1v1h-1z M13 34h1v1h-1z M14 34h1v1h-1z M15 34h1v1h-1z M17 34h1v1h-1z M19 34h1v1h-1z M21 34h1v1h-1z M23 34h1v1h-1z M24 34h1v1h-1z M29 34h1v1h-1z M30 34h1v1h-1z M34 34h1v1h-1z M0 35h1v1h-1z M6 35h1v1h-1z M9 35h1v1h-1z M10 35h1v1h-1z M11 35h1v1h-1z M14 35h1v1h-1z M15 35h1v1h-1z M16 35h1v1h-1z M17 35h1v1h-1z M19 35h1v1h-1z M20 35h1v1h-1z M21 35h1v1h-1z M26 35h1v1h-1z M27 35h1v1h-1z M30 35h1v1h-1z M32 35h1v1h-1z M34 35h1v1h-1z M35 35h1v1h-1z M0 36h1v1h-1z M1 36h1v1h-1z M2 36h1v1h-1z M3 36h1v1h-1z M4 36h1v1h-1z M5 36h1v1h-1z M6 36h1v1h-1z M8 36h1v1h-1z M10 36h1v1h-1z M11 36h1v1h-1z M12 36h1v1h-1z M13 36h1v1h-1z M14 36h1v1h-1z M17 36h1v1h-1z M21 36h1v1h-1z M22 36h1v1h-1z M26 36h1v1h-1z M27 36h1v1h-1z M31 36h1v1h-1z M34 36h1v1h-1z M35 36h1v1h-1z M36 36h1v1h-1z"/></svg></span>
+        <span class="fi-label">Agendar<br>cita</span>
+      </div>
     </div>
   </div>
 
+</div>
+</div><!-- /documento -->
 
-
-</div><!-- /sheet -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
 var medCount = 0;
 
-function agregarMed() {
-  if (medCount >= 10) return;
-  medCount++;
+var ESPEJOS = ['folio','fecha','paciente','edad','peso','indicaciones','proxCita'];
+
+function vacios(n) {
+  var meds = [];
+  for (var i = 0; i < n; i++) meds.push({ n: '', p: '' });
+  return meds;
+}
+
+function ajustarPosologia(el) {
+  if (!el) return;
+  el.style.height = 'auto';
+  var alto = el.scrollHeight;
+  el.style.height = alto + 'px';
+  if (el.scrollHeight > el.clientHeight) el.style.height = el.scrollHeight + 'px';
+}
+
+function ajustarTodas() {
+  var listas = document.querySelectorAll('#documento .med-presc');
+  for (var i = 0; i < listas.length; i++) ajustarPosologia(listas[i]);
+}
+
+function crearFila(m, cont) {
   var row = document.createElement('div');
-  row.className = 'med-row';
-  row.innerHTML =
-    '<div class="med-num">' + medCount + '</div>' +
-    '<div class="med-body">' +
-      '<input class="med-name" type="text" placeholder="Medicamento, dosis y presentación...">' +
-      '<input class="med-presc" type="text" placeholder="Posología: frecuencia, vía y duración del tratamiento...">' +
-    '</div>';
-  document.getElementById('medList').appendChild(row);
+  row.className = 'med-row' + (cont ? ' med-row-cont' : '');
+  if (cont) row.dataset.cont = '1';
+  if (cont) {
+    row.innerHTML =
+      '<div class="med-num"></div>' +
+      '<div class="med-body">' +
+        '<div class="med-cont-note"></div>' +
+        '<textarea class="med-presc" rows="1"></textarea>' +
+      '</div>';
+    row.querySelector('.med-cont-note').textContent = m.n ? m.n : 'Continúa';
+  } else {
+    row.innerHTML =
+      '<div class="med-num"></div>' +
+      '<div class="med-body">' +
+        '<input class="med-name" type="text" placeholder="Medicamento, dosis y presentación...">' +
+        '<textarea class="med-presc" rows="1" placeholder="Posología: frecuencia, vía y duración del tratamiento..."></textarea>' +
+      '</div>';
+    row.querySelector('.med-name').value = m.n || '';
+  }
+  row.querySelector('.med-presc').value = m.p || '';
+  return row;
+}
+
+function renumerar() {
+  var n = 0;
+  var rows = document.querySelectorAll('#documento .med-row');
+  for (var i = 0; i < rows.length; i++) {
+    if (rows[i].dataset.cont !== '1') n++;
+    var num = rows[i].querySelector('.med-num');
+    if (num) num.textContent = n;
+  }
+  medCount = n;
+}
+
+function leerMedsDelDom() {
+  var meds = [];
+  var rows = document.querySelectorAll('#documento .med-row');
+  for (var i = 0; i < rows.length; i++) {
+    var row = rows[i];
+    var ta = row.querySelector('.med-presc');
+    var texto = ta ? ta.value : '';
+    if (row.dataset.cont === '1' && meds.length) {
+      meds[meds.length - 1].p += texto;
+    } else {
+      var nameEl = row.querySelector('.med-name');
+      meds.push({ n: nameEl ? nameEl.value : '', p: texto });
+    }
+  }
+  return meds;
+}
+
+function focoActual() {
+  var ae = document.activeElement;
+  if (!ae || !ae.closest) return null;
+  var row = ae.closest('.med-row');
+  if (!row) return null;
+  var rows = document.querySelectorAll('#documento .med-row');
+  var logical = -1;
+  var idx = -1;
+  var pos = -1;
+  for (var i = 0; i < rows.length; i++) {
+    if (rows[i].dataset.cont !== '1') logical++;
+    if (rows[i] === row) { idx = logical; pos = i; break; }
+  }
+  if (idx < 0) return null;
+  var offset = typeof ae.selectionStart === 'number' ? ae.selectionStart : 0;
+  if (row.dataset.cont === '1' && ae.classList.contains('med-presc')) {
+    for (var j = pos - 1; j >= 0; j--) {
+      var prevTa = rows[j].querySelector('.med-presc');
+      offset += prevTa ? prevTa.value.length : 0;
+      if (rows[j].dataset.cont !== '1') break;
+    }
+  }
+  return {
+    idx: idx,
+    field: ae.classList.contains('med-name') ? 'n' : 'p',
+    offset: offset
+  };
+}
+
+function restaurarFoco(foco) {
+  if (!foco) return;
+  var rows = document.querySelectorAll('#documento .med-row');
+  var logical = -1;
+  var remaining = foco.offset || 0;
+  for (var i = 0; i < rows.length; i++) {
+    var isCont = rows[i].dataset.cont === '1';
+    if (!isCont) logical++;
+    if (logical !== foco.idx) continue;
+    if (foco.field === 'n' && !isCont) {
+      var name = rows[i].querySelector('.med-name');
+      if (name) {
+        name.focus({ preventScroll: true });
+        var p = Math.min(remaining, name.value.length);
+        if (name.setSelectionRange) name.setSelectionRange(p, p);
+      }
+      return;
+    }
+    if (foco.field === 'p') {
+      var ta = rows[i].querySelector('.med-presc');
+      if (!ta) continue;
+      var nextIsCont = rows[i + 1] && rows[i + 1].dataset.cont === '1';
+      if (remaining <= ta.value.length || !nextIsCont) {
+        ta.focus({ preventScroll: true });
+        var pos = Math.min(remaining, ta.value.length);
+        if (ta.setSelectionRange) ta.setSelectionRange(pos, pos);
+        var rect = ta.getBoundingClientRect();
+        if (rect.bottom > window.innerHeight - 8 || rect.top < 60) {
+          ta.scrollIntoView({ block: 'nearest' });
+        }
+        return;
+      }
+      remaining -= ta.value.length;
+    }
+  }
+}
+
+function listaCabe(list) {
+  return list.scrollHeight <= list.clientHeight;
+}
+
+function destruirContinuaciones() {
+  var extras = document.querySelectorAll('#documento .sheet-continua');
+  for (var i = 0; i < extras.length; i++) extras[i].remove();
+}
+
+function asegurarHoja(index) {
+  var doc = document.getElementById('documento');
+  var sheets = doc.querySelectorAll('.sheet');
+  while (sheets.length <= index) {
+    var hoja = document.getElementById('receta').cloneNode(true);
+    hoja.removeAttribute('id');
+    hoja.classList.add('sheet-continua');
+    var conId = hoja.querySelectorAll('[id]');
+    for (var i = 0; i < conId.length; i++) {
+      var el = conId[i];
+      var id = el.id;
+      el.removeAttribute('id');
+      if (ESPEJOS.indexOf(id) !== -1) el.setAttribute('data-mirror', id);
+    }
+    var ml = hoja.querySelector('.med-list');
+    ml.innerHTML = '';
+    var add = hoja.querySelector('.add-med-btn');
+    if (add) add.remove();
+    var banner = document.createElement('div');
+    banner.className = 'continua-banner';
+    banner.textContent = 'Continuación de la receta';
+    ml.parentNode.insertBefore(banner, ml);
+    doc.appendChild(hoja);
+    sheets = doc.querySelectorAll('.sheet');
+  }
+  return sheets[index];
+}
+
+function sincronizarEncabezados() {
+  for (var i = 0; i < ESPEJOS.length; i++) {
+    var id = ESPEJOS[i];
+    var src = document.getElementById(id);
+    if (!src) continue;
+    var mirrors = document.querySelectorAll('[data-mirror="' + id + '"]');
+    for (var j = 0; j < mirrors.length; j++) {
+      if (mirrors[j] === document.activeElement) continue;
+      if (mirrors[j].value !== src.value) mirrors[j].value = src.value;
+    }
+  }
+}
+
+function volcarEspejoActivo() {
+  var ae = document.activeElement;
+  if (!ae || !ae.getAttribute) return;
+  var id = ae.getAttribute('data-mirror');
+  if (!id) return;
+  var src = document.getElementById(id);
+  if (src) src.value = ae.value;
+}
+
+function dividirFila(row, list) {
+  var ta = row.querySelector('.med-presc');
+  if (!ta) return false;
+  var full = ta.value;
+  if (!full) return false;
+  var lo = 0;
+  var hi = full.length;
+  var best = 0;
+  while (lo <= hi) {
+    var mid = (lo + hi) >> 1;
+    ta.value = full.slice(0, mid);
+    ajustarPosologia(ta);
+    if (listaCabe(list)) { best = mid; lo = mid + 1; }
+    else hi = mid - 1;
+  }
+  if (best <= 0 || best >= full.length) {
+    ta.value = full;
+    ajustarPosologia(ta);
+    return false;
+  }
+  var cut = best;
+  var desde = Math.max(0, best - 40);
+  var trozo = full.slice(desde, best);
+  var cortePalabra = Math.max(trozo.lastIndexOf('\n'), trozo.lastIndexOf(' '));
+  if (cortePalabra >= 0) {
+    var candidato = desde + cortePalabra + 1;
+    if (candidato > 0 && candidato < full.length) cut = candidato;
+  }
+  var head = full.slice(0, cut);
+  var rest = full.slice(cut);
+  ta.value = head;
+  ajustarPosologia(ta);
+  if (!listaCabe(list)) {
+    cut = best;
+    head = full.slice(0, cut);
+    rest = full.slice(cut);
+    ta.value = head;
+    ajustarPosologia(ta);
+  }
+  if (!rest) return false;
+  var nombre = '';
+  var nameInput = row.querySelector('.med-name');
+  if (nameInput) nombre = nameInput.value;
+  else {
+    var note = row.querySelector('.med-cont-note');
+    nombre = note ? note.textContent : '';
+    if (nombre === 'Continúa') nombre = '';
+  }
+  var cont = crearFila({ n: nombre, p: rest }, true);
+  var hoja = row.closest('.sheet');
+  var sheets = document.querySelectorAll('#documento .sheet');
+  var idx = 0;
+  for (var i = 0; i < sheets.length; i++) if (sheets[i] === hoja) idx = i;
+  var dest = asegurarHoja(idx + 1).querySelector('.med-list');
+  dest.insertBefore(cont, dest.firstChild);
+  ajustarPosologia(cont.querySelector('.med-presc'));
+  return true;
+}
+
+function pintar(meds, foco) {
+  volcarEspejoActivo();
+  if (!meds.length) meds = vacios(7);
+  destruirContinuaciones();
+  var list = document.getElementById('medList');
+  list.innerHTML = '';
+  for (var i = 0; i < meds.length; i++) list.appendChild(crearFila(meds[i], false));
+  renumerar();
+  ajustarTodas();
+
+  if (list.clientHeight < 40) {
+    restaurarFoco(foco);
+    return;
+  }
+
+  var guard = 0;
+  while (guard++ < 80) {
+    var sheets = document.querySelectorAll('#documento .sheet');
+    var moved = false;
+    for (var s = 0; s < sheets.length; s++) {
+      var mlist = sheets[s].querySelector('.med-list');
+      var areas = mlist.querySelectorAll('.med-presc');
+      for (var a = 0; a < areas.length; a++) ajustarPosologia(areas[a]);
+      if (mlist.clientHeight < 40 || listaCabe(mlist)) continue;
+      var rows = mlist.querySelectorAll('.med-row');
+      if (rows.length > 1) {
+        var last = rows[rows.length - 1];
+        var dest = asegurarHoja(s + 1).querySelector('.med-list');
+        dest.insertBefore(last, dest.firstChild);
+        moved = true;
+        break;
+      }
+      if (rows.length === 1 && dividirFila(rows[0], mlist)) {
+        moved = true;
+        break;
+      }
+    }
+    if (!moved) break;
+  }
+
+  var sobrantes = document.querySelectorAll('#documento .sheet-continua');
+  for (var k = sobrantes.length - 1; k >= 0; k--) {
+    if (!sobrantes[k].querySelector('.med-row')) sobrantes[k].remove();
+  }
+  renumerar();
+  sincronizarEncabezados();
+  restaurarFoco(foco);
+}
+
+function agregarMed() {
+  var meds = leerMedsDelDom();
+  if (meds.length >= 10) return;
+  meds.push({ n: '', p: '' });
+  pintar(meds, { idx: meds.length - 1, field: 'n', offset: 0 });
 }
 
 // ── Gestión de páginas ──────────────────────────────────
@@ -633,11 +1137,6 @@ var paginaActual = 1;
 var paginasData  = {};   // { 1: {folio, fecha, paciente, edad, peso, meds, ind, cita}, 2: ... }
 
 function guardarPaginaActual() {
-  var meds = [];
-  document.querySelectorAll('#medList .med-row').forEach(function(row) {
-    var ins = row.querySelectorAll('input');
-    meds.push({ n: ins[0] ? ins[0].value : '', p: ins[1] ? ins[1].value : '' });
-  });
   paginasData[paginaActual] = {
     folio:    document.getElementById('folio').value,
     fecha:    document.getElementById('fecha').value,
@@ -646,7 +1145,7 @@ function guardarPaginaActual() {
     peso:     document.getElementById('peso').value,
     ind:      document.getElementById('indicaciones').value,
     cita:     document.getElementById('proxCita').value,
-    meds:     meds
+    meds:     leerMedsDelDom()
   };
 }
 
@@ -659,20 +1158,10 @@ function cargarPagina(num) {
   document.getElementById('peso').value      = d.peso     || '';
   document.getElementById('indicaciones').value = d.ind   || '';
   document.getElementById('proxCita').value  = d.cita     || '';
-  document.getElementById('medList').innerHTML = '';
-  medCount = 0;
-  if (d.meds && d.meds.length) {
-    d.meds.forEach(function(m) {
-      agregarMed();
-      var rows = document.querySelectorAll('#medList .med-row');
-      var last = rows[rows.length-1];
-      var ins  = last.querySelectorAll('input');
-      if (ins[0]) ins[0].value = m.n;
-      if (ins[1]) ins[1].value = m.p;
-    });
-  } else {
-    for (var i = 0; i < 7; i++) agregarMed();
-  }
+  var meds = (d.meds && d.meds.length) ? d.meds.map(function(m) {
+    return { n: m.n || '', p: m.p || '' };
+  }) : vacios(7);
+  pintar(meds, null);
   document.getElementById('numPag').textContent = num + 1;
   document.getElementById('btnNuevaPag').style.display = '';
   actualizarIndicadorPagina();
@@ -691,16 +1180,16 @@ function nuevaPagina() {
   paginaActual++;
   if (!paginasData[paginaActual]) {
     // Página nueva: nuevo folio, mismos datos de paciente
-    var prev = paginasData[paginaActual-1] || {};
+    var prev = paginasData[paginaActual - 1] || {};
     paginasData[paginaActual] = {
-      folio:    String(parseInt(localStorage.getItem('cga_folio')||0, 10) + 1).padStart(5,'0'),
+      folio:    String(parseInt(localStorage.getItem('cga_folio') || 0, 10) + 1).padStart(5, '0'),
       fecha:    prev.fecha    || '',
       paciente: prev.paciente || '',
       edad:     prev.edad     || '',
       peso:     prev.peso     || '',
       ind: '', cita: '', meds: []
     };
-    localStorage.setItem('cga_folio', parseInt(localStorage.getItem('cga_folio')||0, 10) + 1);
+    localStorage.setItem('cga_folio', parseInt(localStorage.getItem('cga_folio') || 0, 10) + 1);
   }
   cargarPagina(paginaActual);
   document.getElementById('numPag').textContent = paginaActual + 1;
@@ -719,12 +1208,12 @@ function limpiar() {
   if (!confirm('¿Nueva receta? Se limpiarán todas las páginas y se asignará un nuevo folio.')) return;
   paginasData  = {};
   paginaActual = 1;
-  document.querySelectorAll('input, textarea').forEach(function(el){ el.value=''; });
+  destruirContinuaciones();
+  var campos = document.querySelectorAll('#receta input, #receta textarea');
+  for (var i = 0; i < campos.length; i++) campos[i].value = '';
   setFechaHoy();
   iniciarFolio();
-  document.getElementById('medList').innerHTML = '';
-  medCount = 0;
-  for (var i = 0; i < 7; i++) agregarMed();
+  pintar(vacios(7), null);
   document.getElementById('btnNuevaPag').style.display = '';
   document.getElementById('numPag').textContent = '2';
   actualizarIndicadorPagina();
@@ -733,36 +1222,89 @@ function limpiar() {
 function setFechaHoy() {
   var h = new Date();
   document.getElementById('fecha').value =
-    pad(h.getDate()) + ' / ' + pad(h.getMonth()+1) + ' / ' + h.getFullYear();
+    pad(h.getDate()) + ' / ' + pad(h.getMonth() + 1) + ' / ' + h.getFullYear();
 }
-function pad(n){ return String(n).padStart(2,'0'); }
-
+function pad(n) { return String(n).padStart(2, '0'); }
 
 function guardarPDF() {
+  volcarEspejoActivo();
+  pintar(leerMedsDelDom(), focoActual());
   var pac = document.getElementById('paciente').value || 'paciente';
-  var fec = document.getElementById('fecha').value || new Date().toISOString().slice(0,10);
-  var fn  = 'Receta_' + pac.replace(/[^a-zA-Z0-9]/g,'_') + '_' + fec.replace(/[^0-9]/g,'-') + '.pdf';
-  document.querySelector('.controls').style.display = 'none';
-  document.getElementById('addBtn').style.display   = 'none';
-  html2pdf().set({
-    margin: 0, filename: fn,
-    image: { type:'jpeg', quality:.98 },
-    html2canvas: { scale:2, useCORS:true, logging:false },
-    jsPDF: { unit:'mm', format:'letter', orientation:'portrait' }
-  }).from(document.getElementById('receta')).save().then(function(){
-    document.querySelector('.controls').style.display = '';
-    document.getElementById('addBtn').style.display   = '';
+  var fec = document.getElementById('fecha').value || new Date().toISOString().slice(0, 10);
+  var fn  = 'Receta_' + pac.replace(/[^a-zA-Z0-9]/g, '_') + '_' + fec.replace(/[^0-9]/g, '-') + '.pdf';
+  var controls = document.querySelector('.controls');
+  controls.style.display = 'none';
+  var sheets = Array.prototype.slice.call(document.querySelectorAll('#documento .sheet'));
+  var opt = {
+    margin: 0,
+    filename: fn,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true, logging: false, backgroundColor: '#ffffff' },
+    jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' }
+  };
+  var worker = html2pdf().set(opt).from(sheets[0]).toPdf();
+  for (var i = 1; i < sheets.length; i++) {
+    (function(sheet) {
+      worker = worker.get('pdf').then(function(pdf) {
+        pdf.addPage();
+      }).from(sheet).toContainer().toCanvas().toPdf();
+    })(sheets[i]);
+  }
+  return worker.save().then(function() {
+    controls.style.display = '';
+  }).catch(function() {
+    controls.style.display = '';
   });
 }
 
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('input', function(e) {
+  var t = e.target;
+  if (!t || !t.classList) return;
+  if (t.getAttribute && t.getAttribute('data-mirror')) {
+    var src = document.getElementById(t.getAttribute('data-mirror'));
+    if (src) src.value = t.value;
+    sincronizarEncabezados();
+    return;
+  }
+  if (t.id && ESPEJOS.indexOf(t.id) !== -1) {
+    sincronizarEncabezados();
+    return;
+  }
+  if (t.classList.contains('med-presc') || t.classList.contains('med-name')) {
+    var foco = focoActual();
+    pintar(leerMedsDelDom(), foco);
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
   setFechaHoy();
   iniciarFolio();
-  for (var i = 0; i < 7; i++) agregarMed();
+  pintar(vacios(7), null);
   paginasData[1] = null; // inicializar primera página
   actualizarIndicadorPagina();
   if ('serviceWorker' in navigator)
     navigator.serviceWorker.register('./sw.js').catch(function(){});
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function() {
+      if (document.activeElement && document.activeElement !== document.body) return;
+      pintar(leerMedsDelDom(), null);
+    });
+  }
+});
+
+var resizeTimer;
+window.addEventListener('resize', function() {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function() {
+    pintar(leerMedsDelDom(), focoActual());
+  }, 160);
+});
+
+window.addEventListener('beforeprint', function() {
+  pintar(leerMedsDelDom(), null);
+});
+window.addEventListener('afterprint', function() {
+  pintar(leerMedsDelDom(), null);
 });
 
 function iniciarFolio() {

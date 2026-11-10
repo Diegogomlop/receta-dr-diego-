@@ -1,4 +1,4 @@
-var CACHE = 'receta-cga-v1';
+var CACHE = 'receta-cga-v2';
 var ASSETS = [
   './',
   './index.html',
