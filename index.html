@@ -43,7 +43,7 @@ body {
    CONTROLES
 ══════════════════════════════════════════ */
 .controls {
-  width: 100%; max-width: 740px;
+  width: 100%; max-width: 816px;
   background: white; border-radius: 10px;
   padding: 13px 24px;
   display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
@@ -68,12 +68,18 @@ body {
 /* ══════════════════════════════════════════
    HOJA  (proporción carta 8.5 × 11 in)
 ══════════════════════════════════════════ */
+#documento {
+  width: 100%; max-width: 816px;
+  display: flex; flex-direction: column;
+  gap: 18px;
+}
 .sheet {
-  width: 100%; max-width: 740px;
-  min-height: 960px;
+  width: 100%; max-width: 816px;
+  height: 1056px;
   background: #fff;
   display: flex; flex-direction: column;
   position: relative; overflow: hidden;
+  flex-shrink: 0;
   box-shadow: 0 10px 50px rgba(11,28,69,.22), 0 2px 8px rgba(11,28,69,.1);
 }
 
@@ -106,7 +112,8 @@ body {
   grid-template-columns: 132px 1fr 175px;
   column-gap: 24px;
   align-items: center;
-  padding: 24px 36px 0;
+  padding: 12px 36px 0;
+  flex-shrink: 0;
 }
 
 /* Logo */
@@ -168,7 +175,8 @@ body {
 ══════════════════════════════════════════ */
 .hdr-divider {
   position: relative; z-index: 1;
-  margin: 12px 36px 0;
+  flex-shrink: 0;
+  margin: 8px 36px 0;
 }
 .hdr-divider-thick { border: none; border-top: 2.5px solid var(--navy); }
 .hdr-divider-thin  { border: none; border-top: 1px solid var(--sky2); margin-top: 3px; opacity: .6; }
@@ -178,7 +186,8 @@ body {
 ══════════════════════════════════════════ */
 .patient-section {
   position: relative; z-index: 1;
-  margin: 12px 36px 0;
+  flex-shrink: 0;
+  margin: 8px 36px 0;
   display: grid;
   grid-template-columns: 1fr 88px 84px;
   column-gap: 18px;
@@ -206,18 +215,25 @@ body {
 ══════════════════════════════════════════ */
 .rx-section {
   position: relative; z-index: 1;
-  flex: 1;
-  margin: 10px 36px 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 6px 36px 0;
   display: flex; flex-direction: column;
+  overflow: hidden;
 }
 
-.med-list { display: flex; flex-direction: column; }
+.med-list {
+  display: flex; flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
 
 .med-row {
   display: grid;
   grid-template-columns: 22px 1fr;
   column-gap: 12px;
-  padding: 7px 0;
+  padding: 4px 0;
   border-bottom: 1px solid var(--line);
   align-items: start;
 }
@@ -242,15 +258,38 @@ body {
 .med-name:focus { border-bottom-color: var(--sky2); }
 
 .med-presc {
-  border: none; padding: 1px 3px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  margin: 0;
+  padding: 1px 3px 2px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 11px; font-weight: 400; color: var(--gray);
-  background: transparent; outline: none; width: 100%;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: #243044;
+  background: transparent;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
   border-bottom: 1px solid transparent;
-  transition: border-color .15s;
+  min-height: 1.45em;
 }
-.med-presc::placeholder { color: #c8d4e4; font-style: italic; font-size: 10.5px; }
+.med-presc::placeholder { color: #b0c0d4; font-style: italic; font-weight: 400; font-size: 12.5px; }
 .med-presc:focus { border-bottom-color: var(--line); }
+.med-cont-note {
+  font-size: 13px; font-weight: 700; color: var(--navy);
+  line-height: 1.35; overflow-wrap: anywhere;
+}
+.continua-banner {
+  flex-shrink: 0;
+  font-size: 8px; font-weight: 800; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--navy);
+  margin: 0 0 4px;
+}
 
 /* Botón agregar */
 .add-med-btn {
@@ -269,7 +308,8 @@ body {
 ══════════════════════════════════════════ */
 .ind-section {
   position: relative; z-index: 1;
-  margin: 10px 36px 0;
+  flex-shrink: 0;
+  margin: 6px 36px 0;
 }
 .section-label {
   font-size: 8px; font-weight: 800; color: var(--navy);
@@ -282,7 +322,7 @@ body {
   background: linear-gradient(90deg, transparent, var(--line), transparent);
 }
 .ind-box {
-  width: 100%; min-height: 48px;
+  width: 100%; min-height: 36px;
   border: 1px solid var(--line); border-radius: 7px;
   padding: 9px 13px;
   font-family: 'Montserrat', sans-serif;
@@ -298,7 +338,8 @@ body {
 ══════════════════════════════════════════ */
 .bottom-section {
   position: relative; z-index: 1;
-  margin: 10px 36px 0;
+  flex-shrink: 0;
+  margin: 6px 36px 0;
   display: grid;
   grid-template-columns: 1fr auto;
   column-gap: 24px;
@@ -345,39 +386,74 @@ body {
    PIE
 ══════════════════════════════════════════ */
 .footer {
-  position: sticky;
-  bottom: 0;
-  z-index: 100;
-  margin-top: 10px;
-  background: var(--navy);
-  padding: 13px 28px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0 8px;
-  align-items: center;
+  position: relative;
   flex-shrink: 0;
+  margin-top: 0;
+  background: #fff;
+  color: var(--navy);
+}
+.footer-rule {
+  border-top: 2.5px solid var(--navy);
+  border-bottom: 2px solid var(--gold);
+  height: 0;
+}
+.footer-main {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 7px 20px 8px;
+}
+.footer-contacts {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.15fr) minmax(0, 1.4fr);
+  gap: 6px 12px;
+  align-items: center;
 }
 .fi {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 10.5px; font-weight: 600;
-  color: rgba(255,255,255,.9);
-  justify-content: center;
-  padding: 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
 }
-.fi:first-child { justify-content: flex-start; }
-.fi:last-child  { justify-content: flex-end; }
-.fi + .fi { border-left: 1px solid rgba(255,255,255,.15); }
-.fi svg { width: 32px; height: 32px; flex-shrink: 0; }
-
-/* Franja inferior dorada */
-.footer::after {
-  content: "";
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--gold) 0%, var(--gold2) 100%);
+.fi-icon {
+  width: 26px; height: 26px;
+  flex-shrink: 0;
+  border: 1.5px solid var(--navy);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--navy);
+  background: #fff;
 }
-.footer { padding-bottom: 15px; }
+.fi-icon svg { width: 14px; height: 14px; display: block; }
+.fi-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.fi-label {
+  font-size: 7.5px; font-weight: 800; letter-spacing: .8px;
+  text-transform: uppercase; color: #3e5170; line-height: 1.15;
+}
+.fi-value {
+  font-size: 11.5px; font-weight: 700; color: var(--navy);
+  line-height: 1.25; overflow-wrap: anywhere;
+}
+.footer-qr {
+  flex-shrink: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.footer-qr .qr {
+  width: 50px; height: 50px; display: block;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 2px;
+  box-sizing: border-box;
+}
+.footer-qr .fi-label { text-align: center; line-height: 1.15; }
+@media (max-width: 680px) {
+  .footer-main { align-items: flex-start; padding: 8px 14px 10px; }
+  .footer-contacts { grid-template-columns: 1fr; gap: 7px; }
+  .footer-qr { flex-direction: row; gap: 8px; }
+}
 
 
 /* ─── QR CODE ─────────────────────────────── */
@@ -411,31 +487,32 @@ body {
 }
 
 
-/* ══════════════════════════════════════════
-   PRINT
-══════════════════════════════════════════ */
+@page { size: letter; margin: 0; }
 @media print {
-  body { background: #fff; padding: 0; margin: 0; }
+  html, body { height: auto !important; overflow: visible !important; background: #fff; padding: 0; margin: 0; gap: 0; }
   .controls { display: none !important; }
   .add-med-btn { display: none !important; }
+  #documento {
+    display: block !important;
+    max-width: none; width: auto; height: auto;
+    overflow: visible !important; gap: 0;
+  }
   .sheet {
-    box-shadow: none; max-width: 100%;
-    width: 100%; height: 100vh;
-    min-height: unset;
-    page-break-inside: avoid;
+    display: flex; flex-direction: column;
+    box-shadow: none; max-width: none;
+    width: 8.5in;
+    height: 11in; min-height: 11in; max-height: 11in;
+    break-after: page; page-break-after: always;
+    break-inside: avoid; page-break-inside: avoid;
+    overflow: hidden;
   }
-  .footer {
-    position: relative !important;
-    bottom: auto !important;
+  .sheet:last-child { break-after: auto; page-break-after: auto; }
+  .footer, .footer-rule, .sheet-top-bar, .fi-icon {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-  .sheet-top-bar {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-  * { page-break-inside: avoid; }
 }
+
 </style>
 </head>
 <body>
@@ -452,6 +529,7 @@ body {
 </div>
 
 <!-- ── HOJA ── -->
+<div id="documento">
 <div class="sheet" id="receta">
 
 
@@ -571,61 +649,372 @@ body {
 
   <!-- PIE -->
   <div class="footer">
-    <div class="fi">
-      <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="24" cy="24" r="24" fill="#25D366"/>
-        <path fill="white" d="M24 8.4C15.4 8.4 8.4 15.4 8.4 24c0 2.7.7 5.3 2 7.5L8 40l8.8-2.3c2.1 1.2 4.5 1.9 7.2 1.9 8.6 0 15.6-7 15.6-15.6S32.6 8.4 24 8.4zm7.8 21.4c-.3.9-1.9 1.7-2.6 1.8-.7.1-1.4.3-4.7-1-4-1.6-6.6-5.7-6.8-6-.2-.3-1.6-2.2-1.6-4.2s1-3 1.4-3.4c.4-.4.8-.5 1.1-.5h.8c.2 0 .6-.1.9.7.3.8 1.1 2.7 1.2 2.9.1.2.2.4 0 .7-.1.3-.2.4-.4.7-.2.2-.4.5-.6.7-.2.2-.4.4-.2.8.2.4 1 1.6 2.1 2.7 1.5 1.3 2.7 1.7 3.1 1.9.4.2.6.2.8-.1.2-.3 1-1.1 1.2-1.5.2-.4.5-.3.9-.2.4.1 2.2 1 2.6 1.2.4.2.6.3.7.4.1.2.1.9-.2 1.8z"/>
-      </svg>
-      <span>348-130-9765</span>
-    </div>
-    <!-- QR en el pie -->
-    <div class="fi" style="justify-content:center; border-left:1px solid rgba(255,255,255,.15);">
-      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https://wa.me/523481309765?text=Hola,%20me%20gustar%C3%ADa%20agendar%20una%20cita&color=0b1c45&bgcolor=ffffff" alt="QR"
-             style="width:52px;height:52px;border-radius:5px;background:white;padding:3px;">
-        <span style="font-size:7px;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.6px;text-align:center;">Agendar<br>cita</span>
+    <div class="footer-rule" aria-hidden="true"></div>
+    <div class="footer-main">
+      <div class="footer-contacts">
+        <div class="fi">
+          <span class="fi-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7.2 17.6 5 19.4l.8-2.7A7.2 7.2 0 1 1 7.2 17.6z"/>
+            </svg>
+          </span>
+          <span class="fi-text">
+            <span class="fi-label">WhatsApp</span>
+            <span class="fi-value">348-130-9765</span>
+          </span>
+        </div>
+        <div class="fi">
+          <span class="fi-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s6.2-5.2 6.2-9.6a6.2 6.2 0 1 0-12.4 0C5.8 15.8 12 21 12 21z"/>
+              <circle cx="12" cy="11.3" r="2"/>
+            </svg>
+          </span>
+          <span class="fi-text">
+            <span class="fi-label">Consultorio</span>
+            <span class="fi-value">Carr. Arandas–Tepa Km 2</span>
+          </span>
+        </div>
+        <div class="fi">
+          <span class="fi-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3.5" y="5.5" width="17" height="13" rx="2"/>
+              <path d="m4.5 7.5 7.5 5.5L19.5 7.5"/>
+            </svg>
+          </span>
+          <span class="fi-text">
+            <span class="fi-label">Correo</span>
+            <span class="fi-value">dr.diegogomezlop@gmail.com</span>
+          </span>
+        </div>
       </div>
-    </div>
-    <div class="fi">
-      <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="24" cy="24" r="24" fill="rgba(255,255,255,.15)"/>
-        <path fill="white" d="M24 9C17.9 9 13 13.9 13 20c0 8.6 11 19 11 19S35 28.6 35 20c0-6.1-4.9-11-11-11zm0 14.5a3.5 3.5 0 110-7 3.5 3.5 0 010 7z"/>
-      </svg>
-      <span>Carr. Arandas–Tepa Km 2</span>
-    </div>
-    <div class="fi">
-      <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="24" cy="24" r="24" fill="white"/>
-        <path fill="#EA4335" d="M13 16h22l-11 9z"/>
-        <path fill="#4285F4" d="M35 16v16h-5V21.5z"/>
-        <path fill="#34A853" d="M13 16v16h5V21.5z"/>
-        <path fill="#FBBC05" d="M18 21.5V32h12V21.5L24 25z"/>
-        <path fill="#EA4335" d="M13 16l11 9 11-9z"/>
-      </svg>
-      <span>dr.diegogomezlop@gmail.com</span>
+      <div class="footer-qr">
+        <svg class="qr" role="img" aria-label="QR" xmlns="http://www.w3.org/2000/svg" width="37" height="37"><path fill="#fff" d="M0 0h37v37h-37z"/><path class="qrline" stroke="#0b1c45" d="M0 0.5h7m1 0h2m1 0h2m2 0h1m1 0h3m4 0h2m1 0h2m1 0h7m-37 1h1m5 0h1m2 0h1m1 0h2m4 0h1m2 0h3m1 0h1m1 0h1m3 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m2 0h1m2 0h2m1 0h1m1 0h7m3 0h2m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h1m2 0h3m1 0h2m2 0h4m1 0h1m2 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h3m2 0h1m2 0h5m1 0h1m2 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h2m3 0h2m1 0h1m1 0h5m2 0h1m2 0h1m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h2m1 0h2m1 0h5m3 0h1m1 0h1m1 0h2m-28 1h1m3 0h1m1 0h3m5 0h1m3 0h1m3 0h1m1 0h1m4 0h5m2 0h1m-37 1h1m1 0h4m1 0h1m2 0h2m1 0h1m2 0h2m1 0h2m3 0h4m4 0h2m1 0h1m-32 1h1m1 0h1m2 0h2m3 0h1m1 0h3m1 0h2m1 0h3m1 0h2m2 0h1m1 0h2m-34 1h2m4 0h2m1 0h3m4 0h1m3 0h1m1 0h1m2 0h1m1 0h1m1 0h1m3 0h2m-35 1h2m2 0h4m1 0h1m1 0h2m1 0h1m1 0h1m1 0h3m4 0h1m1 0h3m3 0h3m-37 1h1m2 0h1m1 0h1m1 0h1m1 0h1m2 0h8m2 0h3m2 0h1m4 0h2m1 0h1m-36 1h2m3 0h2m1 0h2m1 0h1m2 0h3m1 0h1m1 0h8m3 0h4m-33 1h3m3 0h1m5 0h3m3 0h2m1 0h1m6 0h3m1 0h1m1 0h1m-35 1h2m2 0h2m1 0h1m1 0h1m1 0h2m1 0h1m3 0h1m2 0h2m2 0h5m1 0h2m1 0h1m-36 1h3m1 0h1m4 0h1m1 0h1m1 0h1m3 0h2m1 0h3m1 0h4m3 0h1m2 0h1m-32 1h4m2 0h1m2 0h3m1 0h1m1 0h1m3 0h1m2 0h2m1 0h1m4 0h1m-34 1h3m3 0h2m1 0h2m3 0h7m1 0h2m2 0h2m5 0h2m-36 1h1m2 0h1m1 0h3m1 0h2m6 0h2m2 0h2m3 0h1m3 0h2m1 0h2m-34 1h2m2 0h1m5 0h1m2 0h2m2 0h1m1 0h6m1 0h1m3 0h2m2 0h1m-36 1h7m1 0h3m1 0h1m1 0h2m1 0h1m5 0h1m3 0h1m3 0h4m-35 1h1m2 0h2m2 0h1m2 0h1m1 0h1m2 0h1m1 0h2m1 0h1m1 0h2m2 0h2m3 0h2m1 0h1m-35 1h3m3 0h1m2 0h1m4 0h1m3 0h2m2 0h1m3 0h1m2 0h3m1 0h4m-37 1h1m1 0h1m1 0h1m2 0h1m2 0h4m2 0h2m1 0h2m2 0h1m2 0h3m2 0h2m-31 1h2m1 0h2m1 0h3m5 0h3m1 0h2m1 0h2m2 0h2m1 0h2m1 0h1m-31 1h1m4 0h2m3 0h1m3 0h1m3 0h3m3 0h1m1 0h2m4 0h2m-37 1h2m1 0h2m1 0h2m1 0h1m3 0h3m1 0h3m1 0h3m2 0h1m1 0h5m1 0h1m1 0h1m-29 1h1m1 0h1m1 0h2m1 0h4m4 0h3m2 0h1m3 0h1m2 0h1m-36 1h7m1 0h3m2 0h1m1 0h1m2 0h1m2 0h4m3 0h1m1 0h1m1 0h1m-33 1h1m5 0h1m3 0h3m2 0h1m5 0h1m6 0h1m3 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h1m3 0h2m3 0h1m3 0h1m3 0h9m-37 1h1m1 0h3m1 0h1m2 0h2m1 0h1m5 0h2m2 0h2m1 0h3m1 0h3m1 0h2m1 0h1m-37 1h1m1 0h3m1 0h1m3 0h2m1 0h3m1 0h1m1 0h1m1 0h1m1 0h2m4 0h2m3 0h1m-35 1h1m5 0h1m2 0h3m2 0h4m1 0h3m4 0h2m2 0h1m1 0h1m1 0h2m-36 1h7m1 0h1m1 0h5m2 0h1m3 0h2m3 0h2m3 0h1m2 0h3"/></svg>
+        <span class="fi-label">Agendar<br>cita</span>
+      </div>
     </div>
   </div>
 
+</div>
+</div><!-- /documento -->
 
-
-</div><!-- /sheet -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
 var medCount = 0;
 
-function agregarMed() {
-  if (medCount >= 10) return;
-  medCount++;
+var ESPEJOS = ['folio','fecha','paciente','edad','peso','indicaciones','proxCita'];
+
+function vacios(n) {
+  var meds = [];
+  for (var i = 0; i < n; i++) meds.push({ n: '', p: '' });
+  return meds;
+}
+
+function ajustarPosologia(el) {
+  if (!el) return;
+  el.style.height = 'auto';
+  var alto = el.scrollHeight;
+  el.style.height = alto + 'px';
+  if (el.scrollHeight > el.clientHeight) el.style.height = el.scrollHeight + 'px';
+}
+
+function ajustarTodas() {
+  var listas = document.querySelectorAll('#documento .med-presc');
+  for (var i = 0; i < listas.length; i++) ajustarPosologia(listas[i]);
+}
+
+function crearFila(m, cont) {
   var row = document.createElement('div');
-  row.className = 'med-row';
-  row.innerHTML =
-    '<div class="med-num">' + medCount + '</div>' +
-    '<div class="med-body">' +
-      '<input class="med-name" type="text" placeholder="Medicamento, dosis y presentación...">' +
-      '<input class="med-presc" type="text" placeholder="Posología: frecuencia, vía y duración del tratamiento...">' +
-    '</div>';
-  document.getElementById('medList').appendChild(row);
+  row.className = 'med-row' + (cont ? ' med-row-cont' : '');
+  if (cont) row.dataset.cont = '1';
+  if (cont) {
+    row.innerHTML =
+      '<div class="med-num"></div>' +
+      '<div class="med-body">' +
+        '<div class="med-cont-note"></div>' +
+        '<textarea class="med-presc" rows="1"></textarea>' +
+      '</div>';
+    row.querySelector('.med-cont-note').textContent = m.n ? m.n : 'Continúa';
+  } else {
+    row.innerHTML =
+      '<div class="med-num"></div>' +
+      '<div class="med-body">' +
+        '<input class="med-name" type="text" placeholder="Medicamento, dosis y presentación...">' +
+        '<textarea class="med-presc" rows="1" placeholder="Posología: frecuencia, vía y duración del tratamiento..."></textarea>' +
+      '</div>';
+    row.querySelector('.med-name').value = m.n || '';
+  }
+  row.querySelector('.med-presc').value = m.p || '';
+  return row;
+}
+
+function renumerar() {
+  var n = 0;
+  var rows = document.querySelectorAll('#documento .med-row');
+  for (var i = 0; i < rows.length; i++) {
+    if (rows[i].dataset.cont !== '1') n++;
+    var num = rows[i].querySelector('.med-num');
+    if (num) num.textContent = n;
+  }
+  medCount = n;
+}
+
+function leerMedsDelDom() {
+  var meds = [];
+  var rows = document.querySelectorAll('#documento .med-row');
+  for (var i = 0; i < rows.length; i++) {
+    var row = rows[i];
+    var ta = row.querySelector('.med-presc');
+    var texto = ta ? ta.value : '';
+    if (row.dataset.cont === '1' && meds.length) {
+      meds[meds.length - 1].p += texto;
+    } else {
+      var nameEl = row.querySelector('.med-name');
+      meds.push({ n: nameEl ? nameEl.value : '', p: texto });
+    }
+  }
+  return meds;
+}
+
+function focoActual() {
+  var ae = document.activeElement;
+  if (!ae || !ae.closest) return null;
+  var row = ae.closest('.med-row');
+  if (!row) return null;
+  var rows = document.querySelectorAll('#documento .med-row');
+  var logical = -1;
+  var idx = -1;
+  var pos = -1;
+  for (var i = 0; i < rows.length; i++) {
+    if (rows[i].dataset.cont !== '1') logical++;
+    if (rows[i] === row) { idx = logical; pos = i; break; }
+  }
+  if (idx < 0) return null;
+  var offset = typeof ae.selectionStart === 'number' ? ae.selectionStart : 0;
+  if (row.dataset.cont === '1' && ae.classList.contains('med-presc')) {
+    for (var j = pos - 1; j >= 0; j--) {
+      var prevTa = rows[j].querySelector('.med-presc');
+      offset += prevTa ? prevTa.value.length : 0;
+      if (rows[j].dataset.cont !== '1') break;
+    }
+  }
+  return {
+    idx: idx,
+    field: ae.classList.contains('med-name') ? 'n' : 'p',
+    offset: offset
+  };
+}
+
+function restaurarFoco(foco) {
+  if (!foco) return;
+  var rows = document.querySelectorAll('#documento .med-row');
+  var logical = -1;
+  var remaining = foco.offset || 0;
+  for (var i = 0; i < rows.length; i++) {
+    var isCont = rows[i].dataset.cont === '1';
+    if (!isCont) logical++;
+    if (logical !== foco.idx) continue;
+    if (foco.field === 'n' && !isCont) {
+      var name = rows[i].querySelector('.med-name');
+      if (name) {
+        name.focus({ preventScroll: true });
+        var p = Math.min(remaining, name.value.length);
+        if (name.setSelectionRange) name.setSelectionRange(p, p);
+      }
+      return;
+    }
+    if (foco.field === 'p') {
+      var ta = rows[i].querySelector('.med-presc');
+      if (!ta) continue;
+      var nextIsCont = rows[i + 1] && rows[i + 1].dataset.cont === '1';
+      if (remaining <= ta.value.length || !nextIsCont) {
+        ta.focus({ preventScroll: true });
+        var pos = Math.min(remaining, ta.value.length);
+        if (ta.setSelectionRange) ta.setSelectionRange(pos, pos);
+        var rect = ta.getBoundingClientRect();
+        if (rect.bottom > window.innerHeight - 8 || rect.top < 60) {
+          ta.scrollIntoView({ block: 'nearest' });
+        }
+        return;
+      }
+      remaining -= ta.value.length;
+    }
+  }
+}
+
+function listaCabe(list) {
+  return list.scrollHeight <= list.clientHeight;
+}
+
+function destruirContinuaciones() {
+  var extras = document.querySelectorAll('#documento .sheet-continua');
+  for (var i = 0; i < extras.length; i++) extras[i].remove();
+}
+
+function asegurarHoja(index) {
+  var doc = document.getElementById('documento');
+  var sheets = doc.querySelectorAll('.sheet');
+  while (sheets.length <= index) {
+    var hoja = document.getElementById('receta').cloneNode(true);
+    hoja.removeAttribute('id');
+    hoja.classList.add('sheet-continua');
+    var conId = hoja.querySelectorAll('[id]');
+    for (var i = 0; i < conId.length; i++) {
+      var el = conId[i];
+      var id = el.id;
+      el.removeAttribute('id');
+      if (ESPEJOS.indexOf(id) !== -1) el.setAttribute('data-mirror', id);
+    }
+    var ml = hoja.querySelector('.med-list');
+    ml.innerHTML = '';
+    var add = hoja.querySelector('.add-med-btn');
+    if (add) add.remove();
+    var banner = document.createElement('div');
+    banner.className = 'continua-banner';
+    banner.textContent = 'Continuación de la receta';
+    ml.parentNode.insertBefore(banner, ml);
+    doc.appendChild(hoja);
+    sheets = doc.querySelectorAll('.sheet');
+  }
+  return sheets[index];
+}
+
+function sincronizarEncabezados() {
+  for (var i = 0; i < ESPEJOS.length; i++) {
+    var id = ESPEJOS[i];
+    var src = document.getElementById(id);
+    if (!src) continue;
+    var mirrors = document.querySelectorAll('[data-mirror="' + id + '"]');
+    for (var j = 0; j < mirrors.length; j++) {
+      if (mirrors[j] === document.activeElement) continue;
+      if (mirrors[j].value !== src.value) mirrors[j].value = src.value;
+    }
+  }
+}
+
+function volcarEspejoActivo() {
+  var ae = document.activeElement;
+  if (!ae || !ae.getAttribute) return;
+  var id = ae.getAttribute('data-mirror');
+  if (!id) return;
+  var src = document.getElementById(id);
+  if (src) src.value = ae.value;
+}
+
+function dividirFila(row, list) {
+  var ta = row.querySelector('.med-presc');
+  if (!ta) return false;
+  var full = ta.value;
+  if (!full) return false;
+  var lo = 0;
+  var hi = full.length;
+  var best = 0;
+  while (lo <= hi) {
+    var mid = (lo + hi) >> 1;
+    ta.value = full.slice(0, mid);
+    ajustarPosologia(ta);
+    if (listaCabe(list)) { best = mid; lo = mid + 1; }
+    else hi = mid - 1;
+  }
+  if (best <= 0 || best >= full.length) {
+    ta.value = full;
+    ajustarPosologia(ta);
+    return false;
+  }
+  var cut = best;
+  var desde = Math.max(0, best - 40);
+  var trozo = full.slice(desde, best);
+  var cortePalabra = Math.max(trozo.lastIndexOf('\n'), trozo.lastIndexOf(' '));
+  if (cortePalabra >= 0) {
+    var candidato = desde + cortePalabra + 1;
+    if (candidato > 0 && candidato < full.length) cut = candidato;
+  }
+  var head = full.slice(0, cut);
+  var rest = full.slice(cut);
+  ta.value = head;
+  ajustarPosologia(ta);
+  if (!listaCabe(list)) {
+    cut = best;
+    head = full.slice(0, cut);
+    rest = full.slice(cut);
+    ta.value = head;
+    ajustarPosologia(ta);
+  }
+  if (!rest) return false;
+  var nombre = '';
+  var nameInput = row.querySelector('.med-name');
+  if (nameInput) nombre = nameInput.value;
+  else {
+    var note = row.querySelector('.med-cont-note');
+    nombre = note ? note.textContent : '';
+    if (nombre === 'Continúa') nombre = '';
+  }
+  var cont = crearFila({ n: nombre, p: rest }, true);
+  var hoja = row.closest('.sheet');
+  var sheets = document.querySelectorAll('#documento .sheet');
+  var idx = 0;
+  for (var i = 0; i < sheets.length; i++) if (sheets[i] === hoja) idx = i;
+  var dest = asegurarHoja(idx + 1).querySelector('.med-list');
+  dest.insertBefore(cont, dest.firstChild);
+  ajustarPosologia(cont.querySelector('.med-presc'));
+  return true;
+}
+
+function pintar(meds, foco) {
+  volcarEspejoActivo();
+  if (!meds.length) meds = vacios(7);
+  destruirContinuaciones();
+  var list = document.getElementById('medList');
+  list.innerHTML = '';
+  for (var i = 0; i < meds.length; i++) list.appendChild(crearFila(meds[i], false));
+  renumerar();
+  ajustarTodas();
+
+  if (list.clientHeight < 40) {
+    restaurarFoco(foco);
+    return;
+  }
+
+  var guard = 0;
+  while (guard++ < 80) {
+    var sheets = document.querySelectorAll('#documento .sheet');
+    var moved = false;
+    for (var s = 0; s < sheets.length; s++) {
+      var mlist = sheets[s].querySelector('.med-list');
+      var areas = mlist.querySelectorAll('.med-presc');
+      for (var a = 0; a < areas.length; a++) ajustarPosologia(areas[a]);
+      if (mlist.clientHeight < 40 || listaCabe(mlist)) continue;
+      var rows = mlist.querySelectorAll('.med-row');
+      if (rows.length > 1) {
+        var last = rows[rows.length - 1];
+        var dest = asegurarHoja(s + 1).querySelector('.med-list');
+        dest.insertBefore(last, dest.firstChild);
+        moved = true;
+        break;
+      }
+      if (rows.length === 1 && dividirFila(rows[0], mlist)) {
+        moved = true;
+        break;
+      }
+    }
+    if (!moved) break;
+  }
+
+  var sobrantes = document.querySelectorAll('#documento .sheet-continua');
+  for (var k = sobrantes.length - 1; k >= 0; k--) {
+    if (!sobrantes[k].querySelector('.med-row')) sobrantes[k].remove();
+  }
+  renumerar();
+  sincronizarEncabezados();
+  restaurarFoco(foco);
+}
+
+function agregarMed() {
+  var meds = leerMedsDelDom();
+  if (meds.length >= 10) return;
+  meds.push({ n: '', p: '' });
+  pintar(meds, { idx: meds.length - 1, field: 'n', offset: 0 });
 }
 
 // ── Gestión de páginas ──────────────────────────────────
@@ -633,11 +1022,6 @@ var paginaActual = 1;
 var paginasData  = {};   // { 1: {folio, fecha, paciente, edad, peso, meds, ind, cita}, 2: ... }
 
 function guardarPaginaActual() {
-  var meds = [];
-  document.querySelectorAll('#medList .med-row').forEach(function(row) {
-    var ins = row.querySelectorAll('input');
-    meds.push({ n: ins[0] ? ins[0].value : '', p: ins[1] ? ins[1].value : '' });
-  });
   paginasData[paginaActual] = {
     folio:    document.getElementById('folio').value,
     fecha:    document.getElementById('fecha').value,
@@ -646,7 +1030,7 @@ function guardarPaginaActual() {
     peso:     document.getElementById('peso').value,
     ind:      document.getElementById('indicaciones').value,
     cita:     document.getElementById('proxCita').value,
-    meds:     meds
+    meds:     leerMedsDelDom()
   };
 }
 
@@ -659,20 +1043,10 @@ function cargarPagina(num) {
   document.getElementById('peso').value      = d.peso     || '';
   document.getElementById('indicaciones').value = d.ind   || '';
   document.getElementById('proxCita').value  = d.cita     || '';
-  document.getElementById('medList').innerHTML = '';
-  medCount = 0;
-  if (d.meds && d.meds.length) {
-    d.meds.forEach(function(m) {
-      agregarMed();
-      var rows = document.querySelectorAll('#medList .med-row');
-      var last = rows[rows.length-1];
-      var ins  = last.querySelectorAll('input');
-      if (ins[0]) ins[0].value = m.n;
-      if (ins[1]) ins[1].value = m.p;
-    });
-  } else {
-    for (var i = 0; i < 7; i++) agregarMed();
-  }
+  var meds = (d.meds && d.meds.length) ? d.meds.map(function(m) {
+    return { n: m.n || '', p: m.p || '' };
+  }) : vacios(7);
+  pintar(meds, null);
   document.getElementById('numPag').textContent = num + 1;
   document.getElementById('btnNuevaPag').style.display = '';
   actualizarIndicadorPagina();
@@ -691,16 +1065,16 @@ function nuevaPagina() {
   paginaActual++;
   if (!paginasData[paginaActual]) {
     // Página nueva: nuevo folio, mismos datos de paciente
-    var prev = paginasData[paginaActual-1] || {};
+    var prev = paginasData[paginaActual - 1] || {};
     paginasData[paginaActual] = {
-      folio:    String(parseInt(localStorage.getItem('cga_folio')||0, 10) + 1).padStart(5,'0'),
+      folio:    String(parseInt(localStorage.getItem('cga_folio') || 0, 10) + 1).padStart(5, '0'),
       fecha:    prev.fecha    || '',
       paciente: prev.paciente || '',
       edad:     prev.edad     || '',
       peso:     prev.peso     || '',
       ind: '', cita: '', meds: []
     };
-    localStorage.setItem('cga_folio', parseInt(localStorage.getItem('cga_folio')||0, 10) + 1);
+    localStorage.setItem('cga_folio', parseInt(localStorage.getItem('cga_folio') || 0, 10) + 1);
   }
   cargarPagina(paginaActual);
   document.getElementById('numPag').textContent = paginaActual + 1;
@@ -719,12 +1093,12 @@ function limpiar() {
   if (!confirm('¿Nueva receta? Se limpiarán todas las páginas y se asignará un nuevo folio.')) return;
   paginasData  = {};
   paginaActual = 1;
-  document.querySelectorAll('input, textarea').forEach(function(el){ el.value=''; });
+  destruirContinuaciones();
+  var campos = document.querySelectorAll('#receta input, #receta textarea');
+  for (var i = 0; i < campos.length; i++) campos[i].value = '';
   setFechaHoy();
   iniciarFolio();
-  document.getElementById('medList').innerHTML = '';
-  medCount = 0;
-  for (var i = 0; i < 7; i++) agregarMed();
+  pintar(vacios(7), null);
   document.getElementById('btnNuevaPag').style.display = '';
   document.getElementById('numPag').textContent = '2';
   actualizarIndicadorPagina();
@@ -733,36 +1107,89 @@ function limpiar() {
 function setFechaHoy() {
   var h = new Date();
   document.getElementById('fecha').value =
-    pad(h.getDate()) + ' / ' + pad(h.getMonth()+1) + ' / ' + h.getFullYear();
+    pad(h.getDate()) + ' / ' + pad(h.getMonth() + 1) + ' / ' + h.getFullYear();
 }
-function pad(n){ return String(n).padStart(2,'0'); }
-
+function pad(n) { return String(n).padStart(2, '0'); }
 
 function guardarPDF() {
+  volcarEspejoActivo();
+  pintar(leerMedsDelDom(), focoActual());
   var pac = document.getElementById('paciente').value || 'paciente';
-  var fec = document.getElementById('fecha').value || new Date().toISOString().slice(0,10);
-  var fn  = 'Receta_' + pac.replace(/[^a-zA-Z0-9]/g,'_') + '_' + fec.replace(/[^0-9]/g,'-') + '.pdf';
-  document.querySelector('.controls').style.display = 'none';
-  document.getElementById('addBtn').style.display   = 'none';
-  html2pdf().set({
-    margin: 0, filename: fn,
-    image: { type:'jpeg', quality:.98 },
-    html2canvas: { scale:2, useCORS:true, logging:false },
-    jsPDF: { unit:'mm', format:'letter', orientation:'portrait' }
-  }).from(document.getElementById('receta')).save().then(function(){
-    document.querySelector('.controls').style.display = '';
-    document.getElementById('addBtn').style.display   = '';
+  var fec = document.getElementById('fecha').value || new Date().toISOString().slice(0, 10);
+  var fn  = 'Receta_' + pac.replace(/[^a-zA-Z0-9]/g, '_') + '_' + fec.replace(/[^0-9]/g, '-') + '.pdf';
+  var controls = document.querySelector('.controls');
+  controls.style.display = 'none';
+  var sheets = Array.prototype.slice.call(document.querySelectorAll('#documento .sheet'));
+  var opt = {
+    margin: 0,
+    filename: fn,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true, logging: false, backgroundColor: '#ffffff' },
+    jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' }
+  };
+  var worker = html2pdf().set(opt).from(sheets[0]).toPdf();
+  for (var i = 1; i < sheets.length; i++) {
+    (function(sheet) {
+      worker = worker.get('pdf').then(function(pdf) {
+        pdf.addPage();
+      }).from(sheet).toContainer().toCanvas().toPdf();
+    })(sheets[i]);
+  }
+  return worker.save().then(function() {
+    controls.style.display = '';
+  }).catch(function() {
+    controls.style.display = '';
   });
 }
 
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('input', function(e) {
+  var t = e.target;
+  if (!t || !t.classList) return;
+  if (t.getAttribute && t.getAttribute('data-mirror')) {
+    var src = document.getElementById(t.getAttribute('data-mirror'));
+    if (src) src.value = t.value;
+    sincronizarEncabezados();
+    return;
+  }
+  if (t.id && ESPEJOS.indexOf(t.id) !== -1) {
+    sincronizarEncabezados();
+    return;
+  }
+  if (t.classList.contains('med-presc') || t.classList.contains('med-name')) {
+    var foco = focoActual();
+    pintar(leerMedsDelDom(), foco);
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
   setFechaHoy();
   iniciarFolio();
-  for (var i = 0; i < 7; i++) agregarMed();
+  pintar(vacios(7), null);
   paginasData[1] = null; // inicializar primera página
   actualizarIndicadorPagina();
   if ('serviceWorker' in navigator)
     navigator.serviceWorker.register('./sw.js').catch(function(){});
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function() {
+      if (document.activeElement && document.activeElement !== document.body) return;
+      pintar(leerMedsDelDom(), null);
+    });
+  }
+});
+
+var resizeTimer;
+window.addEventListener('resize', function() {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function() {
+    pintar(leerMedsDelDom(), focoActual());
+  }, 160);
+});
+
+window.addEventListener('beforeprint', function() {
+  pintar(leerMedsDelDom(), null);
+});
+window.addEventListener('afterprint', function() {
+  pintar(leerMedsDelDom(), null);
 });
 
 function iniciarFolio() {
