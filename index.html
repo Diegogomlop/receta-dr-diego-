@@ -385,6 +385,10 @@ body {
 /* ══════════════════════════════════════════
    PIE
 ══════════════════════════════════════════ */
+/* Pie compartido. La opción activa es la clase del HTML:
+   footer--a  iconos en una fila
+   footer--b  franja azul, misma retícula del encabezado
+   Para volver a A, cambie footer--b por footer--a. */
 .footer {
   position: relative;
   flex-shrink: 0;
@@ -392,18 +396,19 @@ body {
   background: #fff;
   color: var(--navy);
 }
-.footer-rule {
+
+.footer--a .footer-rule {
   border-top: 2.5px solid var(--navy);
   border-bottom: 2px solid var(--gold);
   height: 0;
 }
-.footer-main {
+.footer--a .footer-main {
   display: flex;
   align-items: center;
   gap: 14px;
   padding: 7px 20px 8px;
 }
-.footer-contacts {
+.footer--a .footer-contacts {
   flex: 1;
   min-width: 0;
   display: grid;
@@ -411,13 +416,13 @@ body {
   gap: 6px 12px;
   align-items: center;
 }
-.fi {
+.footer--a .fi {
   display: flex;
   align-items: center;
   gap: 8px;
   min-width: 0;
 }
-.fi-icon {
+.footer--a .fi-icon {
   width: 26px; height: 26px;
   flex-shrink: 0;
   border: 1.5px solid var(--navy);
@@ -426,21 +431,21 @@ body {
   color: var(--navy);
   background: #fff;
 }
-.fi-icon svg { width: 14px; height: 14px; display: block; }
-.fi-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
-.fi-label {
+.footer--a .fi-icon svg { width: 14px; height: 14px; display: block; }
+.footer--a .fi-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.footer--a .fi-label {
   font-size: 7.5px; font-weight: 800; letter-spacing: .8px;
   text-transform: uppercase; color: #3e5170; line-height: 1.15;
 }
-.fi-value {
+.footer--a .fi-value {
   font-size: 11.5px; font-weight: 700; color: var(--navy);
   line-height: 1.25; overflow-wrap: anywhere;
 }
-.footer-qr {
+.footer--a .footer-qr {
   flex-shrink: 0;
   display: flex; flex-direction: column; align-items: center; gap: 2px;
 }
-.footer-qr .qr {
+.footer--a .footer-qr .qr {
   width: 50px; height: 50px; display: block;
   background: #fff;
   border: 1px solid var(--line);
@@ -448,11 +453,97 @@ body {
   padding: 2px;
   box-sizing: border-box;
 }
-.footer-qr .fi-label { text-align: center; line-height: 1.15; }
+.footer--a .footer-qr .fi-label { text-align: center; line-height: 1.15; }
 @media (max-width: 680px) {
-  .footer-main { align-items: flex-start; padding: 8px 14px 10px; }
-  .footer-contacts { grid-template-columns: 1fr; gap: 7px; }
-  .footer-qr { flex-direction: row; gap: 8px; }
+  .footer--a .footer-main { align-items: flex-start; padding: 8px 14px 10px; }
+  .footer--a .footer-contacts { grid-template-columns: 1fr; gap: 7px; }
+  .footer--a .footer-qr { flex-direction: row; gap: 8px; }
+}
+
+.footer--b {
+  background: var(--navy);
+  color: #fff;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.footer--b .footer-rule {
+  height: 0;
+  border: none;
+  border-top: 2.5px solid var(--gold2);
+}
+.footer--b .footer-main {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  column-gap: 24px;
+  align-items: center;
+  padding: 9px 36px 11px;
+}
+.footer--b .footer-qr { grid-column: 1; grid-row: 1; }
+.footer--b .footer-contacts { grid-column: 2; grid-row: 1; }
+.footer--b .footer-qr {
+  width: 132px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.footer--b .footer-qr .qr {
+  width: 54px; height: 54px; display: block;
+  background: #fff;
+  border: 1.5px solid var(--gold2);
+  border-radius: 0;
+  padding: 3px;
+  box-sizing: border-box;
+}
+.footer--b .footer-qr .fi-label {
+  font-size: 7px; font-weight: 500; font-style: italic;
+  letter-spacing: .3px; text-transform: none;
+  color: rgba(255,255,255,.88); text-align: center; line-height: 1.35;
+}
+.footer--b .footer-contacts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  min-width: 0;
+  margin: 1px 0;
+  padding: 2px 0 2px 12px;
+  border-left: 2.5px solid var(--gold2);
+}
+.footer--b .fi {
+  display: grid;
+  grid-template-columns: 16px 7.2em minmax(0, 1fr);
+  column-gap: 8px;
+  align-items: center;
+  min-width: 0;
+}
+.footer--b .fi-icon {
+  width: 16px; height: 16px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  background: transparent;
+  border: none;
+}
+.footer--b .fi-icon svg { width: 15px; height: 15px; display: block; }
+.footer--b .fi-text { display: contents; }
+.footer--b .fi-label {
+  font-size: 9px; font-weight: 600; letter-spacing: .7px;
+  text-transform: uppercase; color: rgba(255,255,255,.82); line-height: 1.2;
+}
+.footer--b .fi-value {
+  font-size: 12.5px; font-weight: 700; color: #fff;
+  line-height: 1.3; overflow-wrap: break-word;
+}
+@media (max-width: 680px) {
+  .footer--b .footer-main {
+    grid-template-columns: 1fr;
+    row-gap: 8px;
+    padding: 8px 16px 10px;
+  }
+  .footer--b .footer-qr,
+  .footer--b .footer-contacts { grid-column: 1; }
+  .footer--b .footer-qr { grid-row: 1; width: auto; flex-direction: row; justify-content: flex-start; gap: 8px; }
+  .footer--b .footer-contacts { grid-row: 2; }
 }
 
 
@@ -507,7 +598,7 @@ body {
     overflow: hidden;
   }
   .sheet:last-child { break-after: auto; page-break-after: auto; }
-  .footer, .footer-rule, .sheet-top-bar, .fi-icon {
+  .footer, .footer--b, .footer--b .footer-rule, .footer-rule, .sheet-top-bar, .fi-icon {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
@@ -648,7 +739,8 @@ body {
   </div>
 
   <!-- PIE -->
-  <div class="footer">
+  <!-- Pie activo: opción B. Para restaurar la opción A, use footer--a. -->
+  <div class="footer footer--b">
     <div class="footer-rule" aria-hidden="true"></div>
     <div class="footer-main">
       <div class="footer-contacts">
