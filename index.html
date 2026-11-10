@@ -233,7 +233,7 @@ body {
   display: grid;
   grid-template-columns: 22px 1fr;
   column-gap: 12px;
-  padding: 4px 0;
+  padding: 3px 0;
   border-bottom: 1px solid var(--line);
   align-items: start;
 }
@@ -344,7 +344,7 @@ body {
   grid-template-columns: 1fr auto;
   column-gap: 24px;
   align-items: end;
-  padding-bottom: 4px;
+  padding-bottom: 16px;
 }
 
 .consultorio-block { display: flex; flex-direction: column; gap: 4px; }
@@ -476,19 +476,22 @@ body {
   grid-template-columns: 132px minmax(0, 1fr);
   column-gap: 24px;
   align-items: center;
-  padding: 9px 36px 11px;
+  padding: 8px 36px 28px;
 }
 .footer--b .footer-qr { grid-column: 1; grid-row: 1; }
 .footer--b .footer-contacts { grid-column: 2; grid-row: 1; }
 .footer--b .footer-qr {
+  position: relative;
   width: 132px;
+  height: 54px;
+  margin: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 3px;
+  justify-content: center;
 }
 .footer--b .footer-qr .qr {
   width: 54px; height: 54px; display: block;
+  margin: 0;
   background: #fff;
   border: 1.5px solid var(--gold2);
   border-radius: 0;
@@ -496,6 +499,10 @@ body {
   box-sizing: border-box;
 }
 .footer--b .footer-qr .fi-label {
+  position: absolute;
+  left: 0; right: 0;
+  top: 58px;
+  margin: 0;
   font-size: 7px; font-weight: 500; font-style: italic;
   letter-spacing: .3px; text-transform: none;
   color: rgba(255,255,255,.88); text-align: center; line-height: 1.35;
@@ -537,12 +544,19 @@ body {
 @media (max-width: 680px) {
   .footer--b .footer-main {
     grid-template-columns: 1fr;
-    row-gap: 8px;
-    padding: 8px 16px 10px;
+    row-gap: 6px;
+    justify-items: start;
+    padding: 12px 36px 14px;
   }
   .footer--b .footer-qr,
-  .footer--b .footer-contacts { grid-column: 1; }
-  .footer--b .footer-qr { grid-row: 1; width: auto; flex-direction: row; justify-content: flex-start; gap: 8px; }
+  .footer--b .footer-contacts { grid-column: 1; width: 100%; }
+  .footer--b .footer-qr {
+    grid-row: 1;
+    width: 132px;
+    height: 54px;
+    padding-bottom: 24px;
+    box-sizing: content-box;
+  }
   .footer--b .footer-contacts { grid-row: 2; }
 }
 
